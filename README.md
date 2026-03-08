@@ -4,7 +4,7 @@
 
 - hyprland and waybar config
 - agenix (or alternatives)
-- nixvim config
+- nixvim config (modularize!)
 - browser: zen or ladybird if time allows
 - power management?
 

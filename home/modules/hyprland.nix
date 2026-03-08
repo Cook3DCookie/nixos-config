@@ -13,9 +13,11 @@
         "$mod+Shift, Q, exec, hyprctl dispatch exit"
 	"$mod, Return, exec, ghostty"
 	"$mod, Q, killactive"
+	"$mod, F, exec, firefox"
 	"$mod, B, exec, google-chrome-stable"
 	#"SUPER, D, exec, tofi-run" #add in home.nix
 	"$mod+Shift, D, exec, discord"
+	"$mod+Shift, S, exec, spotify"
       ];
 
       monitor = [
