@@ -8,12 +8,25 @@
 
   programs.git = {
     enable = true;
+    extraConfig = {
+      init.defaultBranch = "main";
+    };
     settings.user.name = "Cook3DCookie";
     settings.user.email = "147427534+Cook3DCookie@users.noreply.github.com";
 
     #extraConfig = {
       #"includeIf.\"gitdir:~/university/\".path" = "~/.gitconfig-university"; # change when needed
     #};
+  };
+
+  programs.ssh = {
+    enabble = true;
+    matchBlocks = {
+      "github.com" = {
+        user = "git";
+	identityFile = "~/.ssh/id_ed25519";
+      };
+    };
   };
 
   home.packages = with pkgs; [
@@ -27,6 +40,7 @@
     obsidian
     tailscale
     pavucontrol
+    ollama
   ];
 
   imports = [
