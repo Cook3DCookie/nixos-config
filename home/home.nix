@@ -8,7 +8,7 @@
 
   programs.git = {
     enable = true;
-    extraConfig = {
+    settings = {
       init.defaultBranch = "main";
     };
     settings.user.name = "Cook3DCookie";
@@ -20,7 +20,7 @@
   };
 
   programs.ssh = {
-    enabble = true;
+    enable = true;
     matchBlocks = {
       "github.com" = {
         user = "git";

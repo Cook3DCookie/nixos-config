@@ -1,5 +1,4 @@
 # NixOS Configuration with Home Manager and Flakes
----
 
 #### to do:
 
@@ -9,6 +8,5 @@
 - browser: zen or ladybird if time allows
 - power management?
 
-
 ### command for rebuilding:
-sudo nixos-rebuild switch --flake ~/nix-config#lukas-nixos
+`sudo nixos-rebuild switch --flake ~/nix-config#lukas-nixos`

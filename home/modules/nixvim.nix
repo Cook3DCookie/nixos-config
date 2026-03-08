@@ -6,6 +6,7 @@
     viAlias = true;
     vimAlias = true;
     defaultEditor = true;
+    globals.mapleader = " ";
 
     opts = {
       number = true;
@@ -45,9 +46,19 @@
       };
       lsp = {
         enable = true;
+	#inlayHints.enable = true;
 	servers = {
-	  nil_ls.enable = true;
+	  nil_ls.enable = true; # maybe change to nixd in future
 	  pyright.enable = true;
+	};
+	keymaps = {
+	  #silent = true;
+	  lspBuf = {
+	    gd = {
+	      action = "definition";
+	      desc = "Goto Definition";
+	    };
+	  };
 	};
       };
     };
