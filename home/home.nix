@@ -42,7 +42,10 @@
     tailscale
     pavucontrol
     ollama
+    nerd-fonts.fira-code
   ];
+
+  fonts.fontconfig.enable = true;
 
   imports = [
     #./modules

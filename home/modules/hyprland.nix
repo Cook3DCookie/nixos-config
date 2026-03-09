@@ -6,7 +6,10 @@
     systemd.enable = true;
 
     settings = {
-      exec-once = [ "waybar" "[workspace monitor:HDMI-A-1 silent] ghostty" ];
+      animations.enabled = false;
+      general.gaps_out = 1;
+      general.gaps_in = 3;
+      exec-once = [ "[workspace monitor:HDMI-A-1 silent] ghostty" ];
       #exec-once = [ "waybar" "ghostty" ];
       "$mod" = "SUPER";
       bind = [
@@ -18,6 +21,7 @@
 	#"SUPER, D, exec, tofi-run" #add in home.nix
 	"$mod+Shift, D, exec, discord"
 	"$mod+Shift, S, exec, spotify"
+	"$mod, L, exec, ladybird"
       ];
 
       monitor = [
