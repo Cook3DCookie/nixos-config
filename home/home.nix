@@ -44,7 +44,6 @@
     nerd-fonts.fira-code
     tofi
     ladybird
-    uv
     #walker
     #anyrun
   ] ++ (with unstable; [
@@ -52,6 +51,11 @@
   ]);
 
   fonts.fontconfig.enable = true;
+
+  programs.direnv = {
+    enable = true;
+    nix-direnv.enable = true;
+  };
 
   imports = [
     #./modules
