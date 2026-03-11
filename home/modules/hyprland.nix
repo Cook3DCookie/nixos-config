@@ -13,11 +13,11 @@
 	border_size = 1;
 	resize_on_border = true;
 	#col = {
-	  #active_border = rgba(ffffffaa);
+	  #active_border = rgba(255,0,255,0.8);
 	  #inactive_border = rgba(595959aa);
 	#};
       };
-      exec-once = [ "[workspace monitor:HDMI-A-1 silent] ghostty" ];
+      exec-once = [ "[workspace monitor:HDMI-A-1 silent] ghostty" ]; # not working properly
       "$mod" = "SUPER";
       bind = [
         "$mod+Shift, Q, exec, exit"
@@ -26,15 +26,22 @@
 	"$mod, V, togglefloating"
 	"$mod, F, exec, firefox"
 	"$mod, B, exec, google-chrome-stable"
-	"SUPER, D, exec, tofi-run" #add in home.nix
+	"$mod, D, exec, tofi-run"
 	"$mod+Shift, D, exec, discord"
 	"$mod+Shift, S, exec, spotify"
 	"$mod, L, exec, Ladybird"
+	#"$mod, A, exec, anyrun"
+	#"$mod, W, exec, walker"
 
-	"$mod, left, movefocus, l"
-	"$mod, right, movefocus, r"
-	"$mod, up, movefocus, u"
-	"$mod, down, movefocus, d"
+	"$mod, h, movefocus, l"
+	"$mod, l, movefocus, r"
+	"$mod, k, movefocus, u"
+	"$mod, j, movefocus, d"
+
+	#"$mod+Shift, h, , l"
+	#"$mod+Shift, l, , r"
+	#"$mod+Shift, k, , u"
+	#"$mod+Shift, j, , d"
 
 	"$mod, 1, workspace, 1"
 	"$mod, 2, workspace, 2"
@@ -58,6 +65,10 @@
 	"$mod+Shift, 8, movetoworkspace, 8"
 	"$mod+Shift, 9, movetoworkspace, 9"
 	"$mod+Shift, 0, movetoworkspace, 10"
+
+	"$mod+Shift, minus, layoutmsg, swapsplit"
+	"$mod, comma, layoutmsg, swapnext"
+	"$mod, period, layoutmsg, swapprev"
       ];
 
       bindm = [
@@ -71,8 +82,22 @@
         "HDMI-A-1,1920x1080@60,1920x0,1"
       ];
 
+      workspace = [
+        "1, monitor:HDMI-A-1, layout:master, layoutopt:orientation:left"
+	"2, monitor:HDMI-A-2, layout:master, layoutopt:orientation:right"
+	"3, monitor:HDMI-A-1"
+	"4, monitor:HDMI-A-2, layout:dwindle, layoutopt:orientation:vertical"
+	"5, monitor:HDMI-A-1"
+	"6, monitor:HDMI-A-2"
+	"7, monitor:HDMI-A-1"
+	"8, monitor:HDMI-A-2"
+	"9, monitor:HDMI-A-1"
+	"10, monitor:HDMI-A-2"
+      ];
+
       input = {
-        kb_layout = "us";
+        kb_layout = "us"; #kb_layout = "us,cn,de,sv"; # not working
+	#kb_options = "grp:alt_shift_toggle";
       };
 
       env = [

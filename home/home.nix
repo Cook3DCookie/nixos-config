@@ -44,6 +44,9 @@
     nerd-fonts.fira-code
     tofi
     ladybird
+    uv
+    #walker
+    #anyrun
   ] ++ (with unstable; [
     #ladybird
   ]);

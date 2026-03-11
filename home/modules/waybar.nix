@@ -15,10 +15,22 @@
       "hyprland/workspaces" = {
         format = "{name}";
 	on-click = "activate";
+	format-icons = { # not working
+	  "1" = "一";
+	  "2" = "二";
+	  "3" = "三";
+	  "4" = "四";
+	  "5" = "五";
+	  "6" = "六";
+	  "7" = "七";
+	  "8" = "八";
+	  "9" = "九";
+	  "10" = "十";
+	};
       };
       clock = {
         format = " {:%H:%M} ";
-	tooltip-format = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
+	tooltip-format = "<tt><big>{calendar}</big></tt>";
       };
       cpu = {
         format = " {usage}% ";
