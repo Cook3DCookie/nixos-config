@@ -78,7 +78,7 @@
 	}
 
 	#window {
-	  background-color: rgba(255, 255, 255, 0.5);
+	  background-color: rgba(88, 88, 88, 0.5);
 	}
 
 	#workspaces button {

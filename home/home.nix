@@ -1,5 +1,4 @@
-{ pkgs, ... }: 
-
+{ config, pkgs, inputs, unstable, ... }: 
 {
   home.username = "lukas";
   home.homeDirectory = "/home/lukas";
@@ -43,7 +42,11 @@
     pavucontrol
     ollama
     nerd-fonts.fira-code
-  ];
+    tofi
+    ladybird
+  ] ++ (with unstable; [
+    #ladybird
+  ]);
 
   fonts.fontconfig.enable = true;
 
