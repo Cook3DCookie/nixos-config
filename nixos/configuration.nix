@@ -14,6 +14,19 @@
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+  boot.supportedFilesystems = [ "ntfs" ];
+
+  fileSystems."/mnt/shared-docs" = {
+    device = "/dev/sdd1";
+    fsType = "ntfs";
+    options = [
+      "rw"
+      "uid=1000"
+      "gid=100"
+      "fmask=022"
+      "dmask=002"
+    ];
+  };
 
   networking.hostName = "lukas-nixos"; # Define your hostname.
 

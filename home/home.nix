@@ -44,6 +44,7 @@
     nerd-fonts.fira-code
     tofi
     ladybird
+    tmux
     #walker
     #anyrun
   ] ++ (with unstable; [
