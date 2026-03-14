@@ -45,6 +45,7 @@
     tofi
     ladybird
     tmux
+    fish
     #walker
     #anyrun
   ] ++ (with unstable; [
@@ -64,6 +65,8 @@
     ./modules/ghostty.nix
     ./modules/waybar.nix
     ./modules/nixvim.nix
+    ./modules/bash.nix
+    ./modules/fish.nix
   ];
 
   home.stateVersion = "25.11";

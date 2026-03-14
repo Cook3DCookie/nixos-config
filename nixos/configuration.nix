@@ -111,6 +111,7 @@
   users.users.lukas = {
     isNormalUser = true;
     extraGroups = [ "wheel" "networkmanager" ]; # Enable ‘sudo’ for the user.
+    shell = pkgs.fish;
     # packages = with pkgs; [
     #   tree
     # ];
@@ -125,6 +126,7 @@
     wget
     git
     tree
+    fish
   ];
 
   programs.nixvim = {

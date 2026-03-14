@@ -3,12 +3,13 @@
 {
   programs.bash = {
     enable = true;
+    enableCompletion = true;
     shellAliases = {
     };
     initExtra = ''
-    if [ -n "$VIRTUAL_ENV" ]; then
-      PS1="($(basename $VIRTUAL_ENV)) $PS1"
-    fi
+    eval "$(direnv hook bash)"
+    eval "$(starship init bash)"
     '';
   };
+  programs.starship.enable = true;
 }
