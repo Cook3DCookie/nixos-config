@@ -67,6 +67,7 @@
     ./modules/nixvim.nix
     ./modules/bash.nix
     ./modules/fish.nix
+    ./modules/starship.nix
   ];
 
   home.stateVersion = "25.11";

@@ -129,6 +129,8 @@
     fish
   ];
 
+  programs.fish.enable = true;
+
   programs.nixvim = {
     enable = true;
     defaultEditor = true;

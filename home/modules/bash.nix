@@ -11,5 +11,4 @@
     eval "$(starship init bash)"
     '';
   };
-  programs.starship.enable = true;
 }
