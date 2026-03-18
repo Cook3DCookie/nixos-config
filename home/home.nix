@@ -46,6 +46,7 @@
     ladybird
     tmux
     fish
+    tldr
     #walker
     #anyrun
   ] ++ (with unstable; [
