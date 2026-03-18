@@ -60,6 +60,7 @@
 	servers = {
 	  nil_ls.enable = true; # maybe change to nixd in future
 	  pyright.enable = true;
+	  zls.enable = true;
 	};
 	keymaps = {
 	  #silent = true;
