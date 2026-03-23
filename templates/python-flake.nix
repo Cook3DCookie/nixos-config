@@ -7,14 +7,15 @@
 
   outputs = { self, nixpkgs }:
     let
-      system = "x86_64-linux"; # change if needed
+      system = "aarch64-darwin"; # change if needed, needs improvement
       pkgs = import nixpkgs { inherit system; };
     in {
-      devShells.${system}.default = pkgs.mkShellNoCC { # mkShellNoCC instead of mkShell as C compilation is usually not needed
+      devShells.${system}.default = pkgs.mkShell { # or mkShellNoCC
         packages = [
 	  pkgs.python312
-	  pkgs.uv
+	  pkgs.uv # this solution is by no means perfect, and will be improved if time allows
 	  #pkgs.direnv # add if needed, but should be in home.nix
+	  #pkgs.git # should also be installed
 	];
 
 	shellHook = ''
@@ -38,7 +39,7 @@
 	  # activate virtual environment
 	  echo -e "''${BLUE}activating virtual environment...''${NC}"
 	  source .venv/bin/activate
-	  echo -e "''${BLUE}virtual environment ready with python version $(python --version) - deactivate with \`deactivate\`''${NC}"
+	  echo -e "''${BLUE}virtual environment ready with python version $(python --version) - deactivate with \`deactivate\`. usually not necessary to do so.''${NC}"
 	  git add flake.nix
 	  echo -e "''${GREEN}flake.nix is being tracked with git''${NC}"
 
@@ -49,9 +50,10 @@
 	    direnv allow
 	    # better cat .envrc and ask for direnv allow
 	    echo ".envrc created; dev shell loads automatically upon entering directory"
-	    echo "----------------------------------------------------------------------------"
+	    echo "--------------------------------------------------------------------------"
 	    echo -e "''${BLUE}RUN \`exit\` FOR THIS TO WORK PROPERLY''${NC}"
-	    echo "----------------------------------------------------------------------------"
+	    echo "only needed once"
+	    echo "--------------------------------------------------------------------------"
 	  fi
 	  '';
       };
