@@ -2,7 +2,7 @@
 
 {
   home.username = "lukas";
-  home.homeDirectory = "/home/lukas";
+  home.homeDirectory = "/Users/lukas";
 
   programs.home-manager.enable = true;
 
@@ -19,7 +19,7 @@
     #};
   };
 
-  programs.ssh = {
+  programs.ssh = { # needed?
     enable = true;
     enableDefaultConfig = false;
     matchBlocks = {
@@ -30,32 +30,32 @@
     };
   };
 
+  home.sessionPath = [
+    "$HOME/.nix-profile/bin"
+    "$HOME/.local/bin"
+  ];
+
   home.packages = with pkgs; [
-    curl
-    htop
+    #curl
+    #htop
     tree
-    firefox
-    google-chrome
-    ghostty
-    discord
-    spotify
-    obsidian
-    tailscale
-    pavucontrol
+    #tailscale
     ollama
-    nerd-fonts.fira-code
-    tofi
-    ladybird
-    tmux
-    fish
+    #nerd-fonts.fira-code
+    #tmux
     tldr
-    #walker
-    #anyrun
+    wget
+    #pyton312
+    #scrcpy
+    #uv
+    #ffmpeg
+    #micromamba or conda if needed; clean up first, check what is there (miniforge3, envs)
+    marp-cli
   ] ++ (with unstable; [
     #ladybird
   ]);
 
-  fonts.fontconfig.enable = true;
+  #fonts.fontconfig.enable = true;
 
   programs.direnv = {
     enable = true;
@@ -63,11 +63,9 @@
   };
 
   imports = [
-    #./modules
-    ../modules/hyprland.nix
-    ../modules/ghostty.nix
-    ../modules/waybar.nix
+    #../modules/ghostty.nix
     ../modules/nixvim.nix
+    ../modules/zsh.nix
     ../modules/bash.nix
     ../modules/fish.nix
     ../modules/starship.nix
@@ -75,3 +73,4 @@
 
   home.stateVersion = "25.11";
 }
+# command for switching (in current directory): `home-manager switch --flake .#lukas`

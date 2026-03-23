@@ -47,7 +47,7 @@
       pkgs = nixpkgs.legacyPackages.${darwinSystem};
       modules = [
         ./macos/home.nix
-	nixvim.homeManagerModules.nixvim
+	nixvim.homeModules.nixvim
       ];
       extraSpecialArgs = { inherit inputs; };
     };
