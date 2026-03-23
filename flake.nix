@@ -1,5 +1,5 @@
 {
-  description = "System config";
+  description = "System config for my NixOS machine and Macbook with Home Manager";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
@@ -14,6 +14,7 @@
   outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, nixvim, ... }@inputs:
     let
       system = "x86_64-linux";
+      darwinSystem = "aarch64-darwin";
       #pkgs = nixpkgs.legacyPackages.${system};
       #unstable = nixpkgs-unstable.legacyPackages.${system};
     in {
@@ -31,7 +32,7 @@
           home-manager.useUserPackages = true;
           home-manager.users.lukas = {
             imports = [
-              ./home/home.nix
+              ./nixos/home.nix
               nixvim.homeModules.nixvim
             ];
           };
@@ -41,6 +42,14 @@
 	  };
         }
       ];
+    };
+    homeConfigurations.lukas = home-manager.lib.homeManagerConfiguration {
+      pkgs = nixpkgs.legacyPackages.${darwinSystem};
+      modules = [
+        ./macos/home.nix
+	nixvim.homeManagerModules.nixvim
+      ];
+      extraSpecialArgs = { inherit inputs; };
     };
   };
 }

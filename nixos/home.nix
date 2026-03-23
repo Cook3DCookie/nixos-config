@@ -62,13 +62,13 @@
 
   imports = [
     #./modules
-    ./modules/hyprland.nix
-    ./modules/ghostty.nix
-    ./modules/waybar.nix
-    ./modules/nixvim.nix
-    ./modules/bash.nix
-    ./modules/fish.nix
-    ./modules/starship.nix
+    ../modules/hyprland.nix
+    ../modules/ghostty.nix
+    ../modules/waybar.nix
+    ../modules/nixvim.nix
+    ../modules/bash.nix
+    ../modules/fish.nix
+    ../modules/starship.nix
   ];
 
   home.stateVersion = "25.11";
