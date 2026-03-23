@@ -17,6 +17,20 @@
     #extraConfig = {
       #"includeIf.\"gitdir:~/university/\".path" = "~/.gitconfig-university"; # change when needed
     #};
+
+    includes = [
+      {
+        condition = "gitdir:~/Documents/university/"; # replace university with actual name
+	contents = {
+	  user = {
+	    name = "name";
+	    email = "email";
+	  };
+	  # optionally gitlab specific settings. needed?
+	  # url."git@gitlab.university.ed:".insteadOf = "https://gitlab.university.edu/";
+	};
+      }
+    ];
   };
 
   programs.ssh = { # needed?

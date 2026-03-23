@@ -58,7 +58,15 @@
         enable = true;
 	#inlayHints.enable = true;
 	servers = {
-	  nil_ls.enable = true; # maybe change to nixd in future
+	  #nil_ls.enable = true; # maybe change to nixd in future
+	  nixd = {
+	    enable = true;
+	    settings = {
+	      nixos = {
+	        autoArchive = true;
+	      };
+	    };
+	  };
 	  pyright.enable = true;
 	  zls.enable = true;
 	};
