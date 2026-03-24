@@ -18,19 +18,21 @@
       #"includeIf.\"gitdir:~/university/\".path" = "~/.gitconfig-university"; # change when needed
     #};
 
-    includes = [
-      {
-        condition = "gitdir:~/Documents/university/"; # replace university with actual name
-	contents = {
-	  user = {
-	    name = "name";
-	    email = "email";
-	  };
+    #includes = [
+      #{
+        #condition = "gitdir:~/Documents/university/**"; # change when needed
+	#path = "/Users/lukas/nix-config/.gitconfig-university";
+	# -------- probably not needed anymore: --------
+	#contents = {
+	  #user = {
+	    #name = "name";
+	    #email = "email";
+	  #};
 	  # optionally gitlab specific settings. needed?
 	  # url."git@gitlab.university.ed:".insteadOf = "https://gitlab.university.edu/";
-	};
-      }
-    ];
+	#};
+      #}
+    #];
   };
 
   programs.ssh = { # needed?
