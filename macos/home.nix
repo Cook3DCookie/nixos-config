@@ -43,6 +43,10 @@
         user = "git";
 	identityFile = "~/.ssh/id_ed25519";
       };
+      "gitlab.com" = {
+        user = "git";
+	identityFile = "~/.ssh/id_ed25519";
+      };
     };
   };
 
