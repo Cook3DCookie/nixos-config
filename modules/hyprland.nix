@@ -17,7 +17,11 @@
 	  #inactive_border = rgba(595959aa);
 	#};
       };
-      exec-once = [ "[workspace monitor:HDMI-A-1 silent] ghostty" ]; # not working properly
+      exec-once = [
+      "[workspace 1 silent] ghostty"
+      "waybar"
+      "[workspace 2 silent] google-chrome-stable"
+      ]; # not working properly
       "$mod" = "SUPER";
       bind = [
         "$mod+Shift, Q, exec, exit"

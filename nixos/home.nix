@@ -34,7 +34,6 @@
     curl
     htop
     tree
-    firefox
     google-chrome
     ghostty
     discord
