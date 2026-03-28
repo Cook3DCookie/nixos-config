@@ -19,7 +19,6 @@
       };
       exec-once = [
       "[workspace 1 silent] ghostty"
-      "waybar"
       "[workspace 2 silent] google-chrome-stable"
       ]; # not working properly
       "$mod" = "SUPER";
