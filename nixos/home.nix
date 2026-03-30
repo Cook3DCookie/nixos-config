@@ -48,6 +48,7 @@
     tmux
     fish
     tldr
+    unzip
     #walker
     #anyrun
   ] ++ (with unstable; [
