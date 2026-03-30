@@ -29,6 +29,7 @@
 	  # initialize project if not already a uv project
 	  if [ ! -f pyproject.toml ]; then
 	    uv init
+	    uv sync
 	  fi
 
 	  # create virtual environment if missing
