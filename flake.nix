@@ -25,14 +25,14 @@
 	#inherit unstable;
 	};
       modules = [
-        ./nixos/configuration.nix
+        ./hosts/nixos/configuration.nix
         home-manager.nixosModules.home-manager
         {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
           home-manager.users.lukas = {
             imports = [
-              ./nixos/home.nix
+              ./hosts/nixos/home.nix
               nixvim.homeModules.nixvim
             ];
           };
@@ -46,7 +46,7 @@
     homeConfigurations.lukas = home-manager.lib.homeManagerConfiguration {
       pkgs = nixpkgs.legacyPackages.${darwinSystem};
       modules = [
-        ./macos/home.nix
+        ./hosts/macos/home.nix
 	nixvim.homeModules.nixvim
       ];
       extraSpecialArgs = { inherit inputs; };

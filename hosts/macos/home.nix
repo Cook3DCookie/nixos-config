@@ -84,11 +84,11 @@
 
   imports = [
     #../modules/ghostty.nix
-    ../modules/nixvim.nix
-    ../modules/zsh.nix
-    ../modules/bash.nix
-    ../modules/fish.nix
-    ../modules/starship.nix
+    ../../modules/nixvim.nix
+    ../../modules/zsh.nix
+    ../../modules/bash.nix
+    ../../modules/fish.nix
+    ../../modules/starship.nix
   ];
 
   home.stateVersion = "25.11";
