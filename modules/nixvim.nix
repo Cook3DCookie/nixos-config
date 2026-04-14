@@ -133,6 +133,7 @@
 
       molten = {
         enable = true;
+	lazyLoad.enable = true;
 
 	# Configuration settings for molten.nvim. More examples at https://github.com/nix-community/nixvim/blob/main/plugins/by-name/molten/default.nix#L191
 	settings = {
@@ -143,18 +144,30 @@
 	  cover_empty_lines = false;
 	  copy_output = false;
 	  enter_output_behavior = "open_then_enter";
-	  image_provider = "none";
+	  image_location = "both";
+	  image_provider = "image.nvim";
+	  #open_cmd
 	  output_crop_border = true;
+	  output_show_exec_time = true;
+	  output_show_more = false;
 	  output_virt_lines = false;
 	  output_win_border = [ "" "━" "" "" ];
+	  output_win_cover_gutter = true;
 	  output_win_hide_on_leave = true;
 	  output_win_max_height = 15;
 	  output_win_max_width = 80;
+	  output_win_style = false;
 	  save_path.__raw = "vim.fn.stdpath('data')..'/molten'";
 	  tick_rate = 500;
 	  use_border_highlights = false;
 	  limit_output_chars = 10000;
+	  virt_lines_off_by_1 = false;
+	  virt_text_output = false;
+	  #virt_text_max_lines
 	  wrap_output = false;
+	  output_win_zindex = 50;
+	  #virt_text_truncate
+	  #floating_window_focus = "top";
 	};
       };
     };
