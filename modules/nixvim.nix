@@ -133,7 +133,7 @@
 
       molten = {
         enable = true;
-	lazyLoad.enable = true;
+	#lazyLoad.enable = true;
 
 	# Configuration settings for molten.nvim. More examples at https://github.com/nix-community/nixvim/blob/main/plugins/by-name/molten/default.nix#L191
 	settings = {
