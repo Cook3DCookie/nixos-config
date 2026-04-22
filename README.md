@@ -9,7 +9,8 @@
 - power management?
 
 ### command for rebuilding:
-on nixos:
-`sudo nixos-rebuild switch --flake ~/nix-config#lukas-nixos`
-on macos:
+on nixos:  
+`sudo nixos-rebuild switch --flake ~/nix-config#lukas-nixos`  
+
+on macos:  
 `home-manager switch --flake ~/nix-config#lukas`

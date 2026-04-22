@@ -89,6 +89,7 @@
     ../../modules/bash.nix
     ../../modules/fish.nix
     ../../modules/starship.nix
+    ../../modules/tmux.nix
   ];
 
   home.stateVersion = "25.11";
