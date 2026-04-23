@@ -1,5 +1,5 @@
 {
-  description = "System config for my NixOS machine and Macbook with Home Manager";
+  description = "System config for my NixOS machine and Macbook with nix-darwin and Home Manager";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
@@ -8,10 +8,15 @@
       url = "github:nix-community/home-manager/release-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nix-darwin = {
+      #url = "github:nix-darwin/nix-darwin/master";
+      url = "github:nix-darwin/nix-darwin/nix-darwin-25.11";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nixvim.url =  "github:nix-community/nixvim";
   };
 
-  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, nixvim, ... }@inputs:
+  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, nix-darwin, nixvim, ... }@inputs:
     let
       system = "x86_64-linux";
       darwinSystem = "aarch64-darwin";
@@ -43,13 +48,35 @@
         }
       ];
     };
-    homeConfigurations.lukas = home-manager.lib.homeManagerConfiguration {
-      pkgs = nixpkgs.legacyPackages.${darwinSystem};
+    darwinConfigurations.lukas-macos = nix-darwin.lib.darwinSystem {
+      system = darwinSystem;
+      specialArgs = {
+        inherit inputs;
+      };
       modules = [
-        ./hosts/macos/home.nix
-	nixvim.homeModules.nixvim
+        ./hosts/macos/darwin-configuration.nix
+	home-manager.darwinModules.home-manager
+	{
+	  home-manager.useGlobalPkgs = true;
+	  home-manager.useUserPackages = true;
+	  home-manager.users.lukas = {
+	    imports = [
+	      ./hosts/macos/home.nix
+	      nixvim.homeModules.nixvim
+	    ];
+	  };
+	  home-manager.extraSpecialArgs = { inherit inputs; };
+	}
       ];
-      extraSpecialArgs = { inherit inputs; };
     };
+    # to be removed:
+    #homeConfigurations.lukas = home-manager.lib.homeManagerConfiguration {
+    #  pkgs = nixpkgs.legacyPackages.${darwinSystem};
+    #  modules = [
+    #    ./hosts/macos/home.nix
+    #	nixvim.homeModules.nixvim
+    #  ];
+    #  extraSpecialArgs = { inherit inputs; };
+    #};
   };
 }

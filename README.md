@@ -13,4 +13,4 @@ on nixos:
 `sudo nixos-rebuild switch --flake ~/nix-config#lukas-nixos`  
 
 on macos:  
-`home-manager switch --flake ~/nix-config#lukas`
+`sudo darwin-rebuild switch --flake ~/nix-config#lukas-macos`
