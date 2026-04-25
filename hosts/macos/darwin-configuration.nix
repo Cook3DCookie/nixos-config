@@ -2,20 +2,23 @@
 
 {
   environment.systemPackages = with pkgs; [
-    #git
-    #curl
+    git
+    curl
   ];
 
   users.users.lukas = {
     home = "/Users/lukas";
-    #shell = pkgs.fish;
+    shell = pkgs.fish;
   };
 
-  #security.pam.enableSudoTouchIdAuth = true;
+  system.primaryUser = "lukas";
+  programs.fish.enable = true;
+
+  security.pam.services.sudo_local.touchIdAuth = true;
 
   system.defaults = {
-    #dock.autohide = true;
-    #finder.FXPreferredViewStyle = "clmv";
+    dock.autohide = true;
+    finder.FXPreferredViewStyle = "clmv";
   };
 
   homebrew = {
@@ -25,11 +28,9 @@
     ];
   };
 
-  #system.configurationRevision = self.rev or self.dirtyRev or null;
+  system.configurationRevision = self.rev or self.dirtyRev or null;
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
-  nix.extraOptions = ''
-    extra-platforms = x86_64-darwin aarch64-darwin
-  '';
+  nix.settings.extra-platforms = [ "x86_64-darwin" "aarch64-darwin" ];
 
   system.stateVersion = 5;
 }

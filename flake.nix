@@ -28,6 +28,7 @@
       specialArgs = {
         inherit inputs;
 	#inherit unstable;
+	inherit self;
 	};
       modules = [
         ./hosts/nixos/configuration.nix
@@ -52,6 +53,7 @@
       system = darwinSystem;
       specialArgs = {
         inherit inputs;
+	inherit self;
       };
       modules = [
         ./hosts/macos/darwin-configuration.nix
