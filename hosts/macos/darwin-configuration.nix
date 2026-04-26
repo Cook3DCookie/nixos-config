@@ -21,12 +21,7 @@
     finder.FXPreferredViewStyle = "clmv";
   };
 
-  homebrew = {
-    enable = false;
-    casks = [
-      #
-    ];
-  };
+  homebrew.enable = false;
 
   system.configurationRevision = self.rev or self.dirtyRev or null;
   nix.settings.experimental-features = [ "nix-command" "flakes" ];

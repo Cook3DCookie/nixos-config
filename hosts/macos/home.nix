@@ -57,7 +57,7 @@
 
   home.packages = with pkgs; [
     #curl
-    #htop
+    htop
     tree
     #tailscale
     ollama
@@ -71,6 +71,12 @@
     #ffmpeg
     #micromamba or conda if needed; clean up first, check what is there (miniforge3, envs)
     marp-cli
+    #fzf
+    #ripgrep
+    #gradle
+    #imagemagick
+    #tesseract
+    #gnupg
   ] ++ (with unstable; [
     #ladybird
   ]);
