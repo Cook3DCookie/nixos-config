@@ -17,7 +17,7 @@
   boot.supportedFilesystems = [ "ntfs" ];
 
   fileSystems."/mnt/shared-docs" = {
-    device = "/dev/sdd1";
+    device = "/dev/disk/by-uuid/FC0EB1E60EB199DA";
     fsType = "ntfs";
     options = [
       "rw"
@@ -25,6 +25,9 @@
       "gid=100"
       "fmask=022"
       "dmask=002"
+      "noauto" # do not mount at boot
+      "x-systemd.automount" # mount on first access
+      "nofail" # do not block boot if mount fails
     ];
   };
 
