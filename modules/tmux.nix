@@ -23,7 +23,7 @@
       
       set -g history-limit 10000
       set -g escape-time 0
-      set-option -g default-command "${pkgs.pam-reattach}/bin/reattach-to-user-namespace -l ${pkgs.fish}/bin/fish"
+      set-option -g default-command "${pkgs.pam-reattach}/bin/reattach-to-session-namespace -- ${pkgs.fish}/bin/fish -l"
 
       set -s extended-keys on
       set -s extended-keys-format csi-u
