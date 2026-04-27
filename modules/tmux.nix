@@ -29,6 +29,7 @@
       set -s extended-keys-format csi-u
       set -as terminal-features 'xterm-ghostty:extkeys'
 
+      set -g @continuum-save-interval '10'
       set -g @continuum-restore 'on'
     '';
   };
