@@ -7,10 +7,15 @@
     pam-reattach
   ];
 
+  environment.shells = [ pkgs.fish ];
+
   users.users.lukas = {
     home = "/Users/lukas";
     shell = pkgs.fish;
+    uid = 501;
   };
+
+  users.knownUsers = [ "lukas" ];
 
   system.primaryUser = "lukas";
   programs.fish.enable = true;
