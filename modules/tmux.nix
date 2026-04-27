@@ -22,6 +22,8 @@
       set -g renumber-windows on
       
       set -g history-limit 10000
+      set -g escape-time 0
+      set-option -g default-command "reattach-to-user-namespace -l fish"
 
       set -s extended-keys on
       set -s extended-keys-format csi-u
