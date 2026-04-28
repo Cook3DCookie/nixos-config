@@ -23,7 +23,9 @@
       
       set -g history-limit 10000
       set -g escape-time 0
-      set-option -g default-command "${pkgs.pam-reattach}/bin/reattach-to-session-namespace -- ${pkgs.fish}/bin/fish -l"
+      ${if pkgs.stdenv.isDarwin then ''
+	set-option -g default-command "${pkgs.pam-reattach}/bin/reattach-to-session-namespace -- ${pkgs.fish}/bin/fish -l"
+      '' else ""}
 
       set -s extended-keys on
       set -s extended-keys-format csi-u
