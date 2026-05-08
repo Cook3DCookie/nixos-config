@@ -77,6 +77,7 @@
     #imagemagick
     #tesseract
     #gnupg
+    unnaturalscrollwheels
   ] ++ (with unstable; [
     #ladybird
   ]);
