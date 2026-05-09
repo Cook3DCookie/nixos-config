@@ -18,12 +18,12 @@
 
   fileSystems."/mnt/shared-docs" = {
     device = "/dev/disk/by-uuid/FC0EB1E60EB199DA";
-    fsType = "ntfs";
+    fsType = "ntfs-3g";
     options = [
       "rw"
       "uid=1000"
       "gid=100"
-      "fmask=022"
+      "fmask=133"
       "dmask=002"
       "noauto" # do not mount at boot
       "x-systemd.automount" # mount on first access
@@ -130,6 +130,7 @@
     git
     tree
     fish
+    ntfs3g
   ];
 
   programs.fish.enable = true;
