@@ -12,8 +12,6 @@
         echo "⚠️ Running under Rosetta (x86_64). Run 'uname -m' to check"
         echo -ne "\033]0;Rosetta Terminal (x86_64)\007"
       fi
-
-      exec fish
     '';
 
     shellAliases = {
