@@ -131,6 +131,7 @@
 	};
       };
 
+/*
       molten = {
         enable = true;
 	#lazyLoad.enable = true;
@@ -170,6 +171,7 @@
 	  #floating_window_focus = "top";
 	};
       };
+      */
     };
     keymaps = [
     ];

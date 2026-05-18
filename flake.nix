@@ -21,7 +21,7 @@
       system = "x86_64-linux";
       darwinSystem = "aarch64-darwin";
       #pkgs = nixpkgs.legacyPackages.${system};
-      #unstable = nixpkgs-unstable.legacyPackages.${system};
+      unstable = nixpkgs-unstable.legacyPackages.${system};
     in {
     nixosConfigurations.lukas-nixos = nixpkgs.lib.nixosSystem {
       inherit system;
@@ -54,6 +54,7 @@
       specialArgs = {
         inherit inputs;
 	inherit self;
+	inherit unstable;
       };
       modules = [
         ./hosts/macos/darwin-configuration.nix
@@ -67,7 +68,10 @@
 	      nixvim.homeModules.nixvim
 	    ];
 	  };
-	  home-manager.extraSpecialArgs = { inherit inputs; };
+	  home-manager.extraSpecialArgs = {
+	    inherit inputs;
+	    inherit unstable;
+	  };
 	}
       ];
     };

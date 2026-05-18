@@ -60,7 +60,7 @@
     htop
     tree
     #tailscale
-    ollama
+    #ollama
     #nerd-fonts.fira-code
     #tmux
     tldr
@@ -80,6 +80,7 @@
     unnaturalscrollwheels
   ] ++ (with unstable; [
     #ladybird
+    ollama
   ]);
 
   #fonts.fontconfig.enable = true;

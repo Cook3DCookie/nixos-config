@@ -1,4 +1,4 @@
-{ config, pkgs, self, ... }:
+{ config, pkgs, self, lib, ... }:
 
 {
   environment.systemPackages = with pkgs; [
@@ -6,6 +6,11 @@
     curl
     pam-reattach
   ];
+
+  nixpkgs.config.allowUnfree = true;
+  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
+             "wezterm.nvim"
+           ];
 
   environment.shells = [ pkgs.fish ];
 
