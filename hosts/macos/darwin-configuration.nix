@@ -1,11 +1,13 @@
-{ config, pkgs, self, lib, ... }:
+{ config, pkgs, self, lib, unstable-darwin, ... }:
 
 {
   environment.systemPackages = with pkgs; [
     git
     curl
     pam-reattach
-  ];
+  ] ++ (with unstable-darwin; [
+    #ollama
+  ]);
 
   nixpkgs.config.allowUnfree = true;
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [

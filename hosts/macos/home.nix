@@ -1,4 +1,4 @@
-{ config, pkgs, inputs, unstable, ... }: 
+{ config, pkgs, inputs, unstable-darwin, ... }: 
 
 {
   home.username = "lukas";
@@ -78,7 +78,7 @@
     #tesseract
     #gnupg
     unnaturalscrollwheels
-  ] ++ (with unstable; [
+  ] ++ (with unstable-darwin; [
     #ladybird
     ollama
   ]);
