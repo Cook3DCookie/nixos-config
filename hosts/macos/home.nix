@@ -81,6 +81,7 @@
   ] ++ (with unstable-darwin; [
     #ladybird
     ollama
+    opencode
   ]);
 
   #fonts.fontconfig.enable = true;
