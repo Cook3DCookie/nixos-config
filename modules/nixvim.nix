@@ -29,6 +29,7 @@
       fugitive.enable = true;
       web-devicons.enable = true;
       autoclose.enable = true;
+      codecompanion.enable = true;
 
 
 
