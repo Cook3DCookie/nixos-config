@@ -119,11 +119,11 @@
               action = "open_float";
               desc = "Line Diagnostics";
             };
-            "[d" = {
+            "]d" = {
               action = "goto_next";
               desc = "Next Diagnostic";
             };
-            "]d" = {
+            "[d" = {
               action = "goto_prev";
               desc = "Previous Diagnostic";
             };
@@ -140,6 +140,15 @@
 	    agent.adapter = "ollama";
 	    chat.adapter = "ollama";
 	  };
+	  display = {
+	    chat = {
+	      window = {
+	        layout = "vertical";
+		width = 0.25;
+		position = "left";
+	      };
+	    };
+	  };
 	  adapters = {
 	    ollama = {
 	      __raw = ''
@@ -148,7 +157,7 @@
 		    name = "ollama",
 		    schema = {
 		      model = {
-		        default = "qwen3.5:0.8b",
+		        default = "ZimaBlueAI/qwen3.5-9B-DeepSeek-V4-Flash-GGUF:latest",
 		      },
 		    },
 		  })
@@ -158,10 +167,36 @@
 	  };
 	};
       };
+      llm = {
+        enable = true;
+	settings = {
+	  backend = "ollama";
+	  model = "qwen2.5-coder:1.5b";
+	  url = "http://localhost:11434/api/generate";
 
+	  fim = {
+	    enabled = true;
+	    prefix_prompt = "<|fim_prefix|>";
+	    middle_prompt = "<|fim_prefix|>";
+	    suffix_prompt = "<|fim_prefix|>";
+	  };
+	  debounce_ms = 150;
 
+	  accept_keymap = "<Right>";
+	  #dismiss_keymap = "<S-Tab>";
 
-
+	  request_body = {
+	    think = false;
+	    raw = true;
+	    stop = ["<|file_separator|>" "<|fim_prefix|>" "<|fim_suffix|>" "<|fim_middle|>" "<|endoftext|>"];
+	    options = {
+	      temperature = 0.2;
+	      top_p = 0.95;
+	      num_predict = 15;
+	    };
+	  };
+	};
+      };
 
 /*
       molten = {
