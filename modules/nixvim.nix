@@ -29,7 +29,6 @@
       fugitive.enable = true;
       web-devicons.enable = true;
       autoclose.enable = true;
-      codecompanion.enable = true;
 
 
 
@@ -132,6 +131,38 @@
 	};
       };
 
+
+      codecompanion = {
+        enable = true;
+	settings = {
+	  strategies = {
+	    inline.adapter = "ollama";
+	    agent.adapter = "ollama";
+	    chat.adapter = "ollama";
+	  };
+	  adapters = {
+	    ollama = {
+	      __raw = ''
+	        function()
+		  return requires("codecompanion.adapters").extend("ollama", {
+		    name = "ollama",
+		    schema = {
+		      model = {
+		        default = "qwen3.5:0.8b",
+		      },
+		    },
+		  })
+		end
+	      '';
+	    };
+	  };
+	};
+      };
+
+
+
+
+
 /*
       molten = {
         enable = true;
@@ -175,6 +206,18 @@
       */
     };
     keymaps = [
+      {
+        mode = "v";
+	key = "<leader>i";
+	action = "<cmd>CodeCompanion<cr>";
+	options.desc = "CodeCompanion Inline Prompt";
+      }
+      {
+        mode = [ "n" "v" ];
+	key = "<leader>a";
+	action = "<cmd>CodeCompanionChat Toggle<cr>";
+	options.desc = "CodeCompanion Chat";
+      }
     ];
   };
 }
