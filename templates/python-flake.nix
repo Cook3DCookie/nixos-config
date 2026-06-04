@@ -39,7 +39,6 @@
 	      NC='\033[0m' # No Color
 
 	      export UV_PYTHON_DOWNLOADS=never
-	      export UV_PYTHON=${pkgs.python312}/bin/python
 
 	      echo -e "''${BLUE}nix python env''${NC}"
 
