@@ -132,6 +132,7 @@
       };
 
 
+      /*
       codecompanion = {
         enable = true;
 	settings = {
@@ -197,6 +198,7 @@
 	  };
 	};
       };
+      */
 
 /*
       molten = {
@@ -241,6 +243,7 @@
       */
     };
     keymaps = [
+      /*
       {
         mode = "v";
 	key = "<leader>i";
@@ -253,6 +256,7 @@
 	action = "<cmd>CodeCompanionChat Toggle<cr>";
 	options.desc = "CodeCompanion Chat";
       }
+      */
     ];
   };
 }
