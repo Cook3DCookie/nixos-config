@@ -45,7 +45,7 @@
     ollama
     nerd-fonts.fira-code
     tofi
-    ladybird
+    #ladybird
     tmux
     fish
     tldr
@@ -53,7 +53,8 @@
     #walker
     #anyrun
   ] ++ (with unstable; [
-    #ladybird
+    ladybird
+    opencode
   ]);
 
   fonts.fontconfig.enable = true;

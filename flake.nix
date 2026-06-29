@@ -21,14 +21,15 @@
       system = "x86_64-linux";
       darwinSystem = "aarch64-darwin";
       #pkgs = nixpkgs.legacyPackages.${system};
-      #unstable = nixpkgs-unstable.legacyPackages.${x86_64-linux};
+      unstable = nixpkgs-unstable.legacyPackages.${system};
       unstable-darwin = nixpkgs-unstable.legacyPackages.${darwinSystem};
     in {
     nixosConfigurations.lukas-nixos = nixpkgs.lib.nixosSystem {
       inherit system;
       specialArgs = {
         inherit inputs;
-	#inherit unstable;
+	#inherit pkgs;
+	inherit unstable;
 	inherit self;
 	};
       modules = [
@@ -44,7 +45,8 @@
             ];
           };
 	  home-manager.extraSpecialArgs = {
-	    #inherit unstable;
+	    #inherit pkgs;
+	    inherit unstable;
 	    inherit inputs;
 	  };
         }
