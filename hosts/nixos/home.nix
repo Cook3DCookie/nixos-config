@@ -52,6 +52,7 @@
     unzip
     #walker
     #anyrun
+    wl-clipboard
   ] ++ (with unstable; [
     ladybird
     opencode
