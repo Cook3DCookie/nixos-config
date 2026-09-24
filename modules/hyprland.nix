@@ -18,8 +18,8 @@
 	#};
       };
       exec-once = [
-      "[workspace 1 silent] ghostty"
-      "[workspace 2 silent] google-chrome-stable"
+	"[workspace 1 silent] ghostty"
+        "[workspace 2 silent] google-chrome-stable"
       ]; # not working properly
       "$mod" = "SUPER";
       bind = [
@@ -99,8 +99,8 @@
       ];
 
       input = {
-        kb_layout = "us"; #kb_layout = "us,cn,de,sv"; # not working
-	#kb_options = "grp:alt_shift_toggle";
+        kb_layout = "us,de";
+	kb_options = "grp:alt_shift_toggle";
       };
 
       env = [
