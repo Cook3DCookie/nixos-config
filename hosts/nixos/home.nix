@@ -60,6 +60,22 @@
 
   fonts.fontconfig.enable = true;
 
+  home.pointerCursor = {
+    gtk.enable = true;
+    x11.enable = true;
+    package = pkgs.vanilla-dmz;
+    name = "Vanilla-DMZ-AA";
+    size = 24;
+  };
+
+  #gtk = {
+    #enable = true;
+    #cursorTheme = {
+      #package = pkgs.vanilla-dmz;
+      #name = "Vanilla-DMZ-AA";
+    #};
+  #};
+
   programs.direnv = {
     enable = true;
     nix-direnv.enable = true;
