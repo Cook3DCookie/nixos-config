@@ -55,6 +55,40 @@
   #   useXkbConfig = true; # use xkb.options in tty.
   };
 
+  i18n.inputMethod = {
+    enable = true;
+    type = "fcitx5";
+    fcitx5 = {
+      waylandFrontend = true;
+      addons = with pkgs; [
+        fcitx5-gtk
+	qt6Packages.fcitx5-chinese-addons
+	fcitx5-mozc
+      ];
+      settings = {
+        inputMethod = {
+          GroupOrder."0" = "Default";
+	  "Groups/0" = {
+	    Name = "Default";
+	    "Default Layout" = "us";
+	    DefaultIM = "keyboard-us";
+	  };
+	  "Groups/0/Items/0".Name = "keyboard-us";
+	  "Groups/0/Items/1".Name = "pinyin";
+	  "Groups/0/Items/2".Name = "mozc";
+        };
+	globalOptions = {
+	  "Hotkey/EnumerateForwardKeys" = {
+	    "0" = "Super+space";
+	  };
+	  #ActiveByDefault = true;
+        };
+      };
+      ignoreUserConfig = true;
+    };
+  };
+
+
   # Enable the X11 windowing system.
   # services.xserver = {
     # enable = true;

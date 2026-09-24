@@ -18,9 +18,10 @@
 	#};
       };
       exec-once = [
+	"fcitx5 -d"
 	"[workspace 1 silent] ghostty"
         "[workspace 2 silent] google-chrome-stable"
-      ]; # not working properly
+      ];
       "$mod" = "SUPER";
       bind = [
         "$mod+Shift, Q, exec, exit"
@@ -99,7 +100,7 @@
       ];
 
       input = {
-        kb_layout = "us,de";
+        kb_layout = "us,de,se";
 	kb_options = "grp:alt_shift_toggle";
       };
 
