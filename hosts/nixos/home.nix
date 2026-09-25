@@ -34,7 +34,6 @@
     curl
     htop
     tree
-    firefox
     google-chrome
     ghostty
     discord
@@ -56,6 +55,7 @@
   ] ++ (with unstable; [
     ladybird
     opencode
+    inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
   ]);
 
   fonts.fontconfig.enable = true;

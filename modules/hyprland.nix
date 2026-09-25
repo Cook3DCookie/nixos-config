@@ -20,7 +20,7 @@
       exec-once = [
 	"fcitx5 -d"
 	"[workspace 1 silent] ghostty"
-        "[workspace 2 silent] google-chrome-stable"
+        "[workspace 2 silent] zen"
       ];
       "$mod" = "SUPER";
       bind = [
@@ -28,7 +28,7 @@
 	"$mod, Return, exec, ghostty"
 	"$mod, Q, killactive"
 	"$mod, V, togglefloating"
-	"$mod, F, exec, firefox"
+	"$mod, F, exec, zen"
 	"$mod, B, exec, google-chrome-stable"
 	"$mod, D, exec, tofi-run"
 	"$mod+Shift, D, exec, discord"
