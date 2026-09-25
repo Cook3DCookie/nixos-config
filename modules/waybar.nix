@@ -4,18 +4,19 @@
   programs.waybar = {
     enable = true;
     systemd.enable = true;
+    systemd.target = "hyprland-session.target";
     settings.mainBar = {
       layer = "top";
       position = "top";
       height = 10;
-      modules-left = [ "hyprland/workspaces" ];
-      modules-center = [ "hyprland/window" ];
-      modules-right = [ "tray" "clock" "cpu" "temperature" "memory" "network" ]; #pulseaudio
+      modules-left = [ "clock" "tray" ];
+      modules-center = [ "hyprland/workspaces" ];
+      modules-right = [ "cpu" "temperature" "memory" "custom/gpu" "network" ]; #pulseaudio
 
       "hyprland/workspaces" = {
-        format = "{name}";
+        format = "{icon}";
 	on-click = "activate";
-	format-icons = { # not working
+	format-icons = {
 	  "1" = "一";
 	  "2" = "二";
 	  "3" = "三";
@@ -52,12 +53,10 @@
 	tooltip-format = ''
 	  RAM: {used:0.1f}GB/{total:0.1f}GB
 	  Swap: {swapUsed:0.1f}GB/{swapTotal:0.1f}GB
-	  Top 3 processes by RAM:
-	  {top_processes}
 	'';
       };
       temperature = {
-        thermal-zone = 0;
+        hwmon-path = "/sys/class/hwmon/hwmon1/temp1_input";
 	format = " {temperatureC}°C ";
 	critical-threshold = 80;
 	interval = 2;
@@ -73,6 +72,12 @@
       tray = {
         spacing = 8;
 	icon-size = 16;
+      };
+      "custom/gpu" = {
+        exec = "nvidia-smi --query-gpu=temperature.gpu,utilization.gpu,memory.used,memory.total --format=csv,noheader,nounits | awk -F', ' '{printf \" %s°C  %s%%  %.1f/%.1fG\", $1, $2, $3/1024, $4/1024}'";
+	interval = 4;
+	format = "{}";
+	tooltip = false;
       };
     };
 
@@ -99,12 +104,12 @@
 	  color: #c0caf5;
 	}
 
-	#workspaces button.focused {
+	#workspaces button.active {
 	  background: rgba(122, 162, 247, 0.5);
 	  border-radius: 5px;
 	}
 
-	#cpu, #memory, #custom-gpu, #clock, #temperature {
+	#cpu, #memory, #custom-gpu, #clock, #temperature #network {
 	  padding: 0 8px;
 	  margin: 0 2px;
 	  background: rgba(55, 59, 70, 0.8);

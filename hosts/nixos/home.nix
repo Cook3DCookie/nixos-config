@@ -52,6 +52,7 @@
     #walker
     #anyrun
     wl-clipboard
+    uwsm
   ] ++ (with unstable; [
     ladybird
     opencode

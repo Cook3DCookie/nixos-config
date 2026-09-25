@@ -2,10 +2,9 @@
 
 #### to do:
 
-- improve hyprland and waybar config
+- improve hyprland and waybar config/move to river?
 - agenix (or alternatives)
-- improve nixvim config (modularize!)
-- browser: zen or ladybird if time allows
+- improve nixvim config (modularize/dendritic?)
 - power management?
 
 ### command for rebuilding:
