@@ -7,6 +7,15 @@
 , libgudev
 }:
 
+let
+  setuptools_81 = python3Packages.setuptools.overridePythonAttrs (old: rec {
+    version = "81.0.0";
+    src = old.src.override {
+      inherit version;
+      hash = "sha256-MJbWp6C0Em+trBDgLxufrQ5cAaKxSNly0D6IZvGm+mc=";
+    };
+  });
+in
 python3Packages.buildPythonApplication rec {
   pname = "socranop";
   version = "0.4.92a5";
@@ -28,8 +37,8 @@ python3Packages.buildPythonApplication rec {
     pygobject3
     pydbus
     pyusb
-    setuptools
   ] ++ [
+    setuptools_81
     gtk3
     libgudev
   ];

@@ -4,6 +4,8 @@
   wayland.windowManager.hyprland = {
     enable = true;
     systemd.enable = true;
+    systemd.variables = [ "--all" ];
+    configType = "hyprlang";
 
     settings = {
       animations.enabled = false;
@@ -126,7 +128,10 @@
       ];
 
       wallpaper = [
-        ",/home/lukas/pictures/wallpapers/NixosAnime.png"
+        {
+	  monitor = "";
+	  path = "/home/lukas/pictures/wallpapers/NixosAnime.png";
+	}
       ];
     };
   };

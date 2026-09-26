@@ -22,10 +22,10 @@
   programs.ssh = {
     enable = true;
     enableDefaultConfig = false;
-    matchBlocks = {
+    settings = {
       "github.com" = {
-        user = "git";
-	identityFile = "~/.ssh/id_ed25519";
+        User = "git";
+	IdentityFile = "~/.ssh/id_ed25519";
       };
     };
   };
@@ -43,6 +43,7 @@
     pavucontrol
     ollama
     nerd-fonts.fira-code
+    noto-fonts
     tofi
     #ladybird
     tmux
