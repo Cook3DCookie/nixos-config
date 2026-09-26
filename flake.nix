@@ -28,6 +28,8 @@
       unstable = nixpkgs-unstable.legacyPackages.${system};
       unstable-darwin = nixpkgs-unstable.legacyPackages.${darwinSystem};
     in {
+    packages.${system}.socranop = unstable.callPackage ./pkgs/socranop.nix { };
+
     nixosConfigurations.lukas-nixos = nixpkgs.lib.nixosSystem {
       inherit system;
       specialArgs = {

@@ -118,7 +118,15 @@
     alsa.support32Bit = true;
     pulse.enable = true;
     jack.enable = true;
-#    extraConfig = {
+    extraConfig = {
+    pipewire-pulse."10-adjustQuirkRules.conf" = {
+      "pulse.rules" = [
+        {
+	  matches = [ { "application.process.binary" = "Discord"; } ];
+	  actions."quirks" = [ "block-source-volume" ];
+	}
+      ];
+    };
 #      "monitor.alsa.rules" = [
 #        {
 #	  matches = [ { "device.name" = "~alsa_card.*"; } ];
@@ -143,8 +151,11 @@
 #	  };
 #	}
     #  ];
-    #};
+    };
   };
+
+  services.udev.packages = [ inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.socranop.udev ];
+  services.dbus.packages = [ inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.socranop ];
 
   security.rtkit.enable = true;
 

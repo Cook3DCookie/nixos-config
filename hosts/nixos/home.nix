@@ -53,6 +53,10 @@
     #anyrun
     wl-clipboard
     uwsm
+    pavucontrol # gui for device profiles, volume, routing
+    qjackctl # gui patchbay for jack/pipewire
+    lsp-plugins # lsp gate stereo, used as a gain stage
+    inputs.self.packages.${stdenv.hostPlatform.system}.socranop
   ] ++ (with unstable; [
     ladybird
     opencode
