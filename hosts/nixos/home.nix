@@ -62,6 +62,8 @@
     ladybird
     opencode
     inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
+    ffmpeg
+    streamdeck-ui
   ]);
 
   fonts.fontconfig.enable = true;

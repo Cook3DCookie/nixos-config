@@ -117,12 +117,18 @@
 	"GMB_BACKEND,nvidia-drm"
 	"__GLX_VENDOR_LIBRARY_NAME,nvidia"
       ];
+
+      misc = {
+        force_default_wallpaper = 0;
+	disable_hyprland_logo = true;
+      };
     };
   };
 
   services.hyprpaper = {
     enable = true;
     settings = {
+      splash = false;
       preload = [
         "/home/lukas/pictures/wallpapers/NixosAnime.png"
       ];
