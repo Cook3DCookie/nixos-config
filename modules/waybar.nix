@@ -109,7 +109,7 @@
 	  border-radius: 5px;
 	}
 
-	#cpu, #memory, #custom-gpu, #clock, #temperature #network {
+	#cpu, #memory, #custom-gpu, #clock, #temperature, #network {
 	  padding: 0 8px;
 	  margin: 0 2px;
 	  background: rgba(55, 59, 70, 0.8);

@@ -2,7 +2,7 @@
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
-{ config, lib, pkgs, inputs, ... }:
+{ config, lib, pkgs, inputs, wallpapers, ... }:
 
 {
   imports =
@@ -208,6 +208,30 @@
     #WLR_NO_HARDWARE_CURSORS = "1";
     #LIBVA_DRIVER_NAME = "nvidia";
   #};
+
+  stylix = {
+    enable = false;
+    polarity = "dark";
+    #base16Scheme = "";
+    image = wallpapers.NixosAnime;
+    #targets.nixvim.enable = false;
+    /*
+    fonts = {
+      monospace = {
+        package = pkgs.nerdfonts.override { fonts = [ "" ]; };
+        name = "";
+      };
+      sansSerif = {
+        package = pkgs.;
+        name = "";
+      };
+      serif = {
+        package = pkgs.;
+        name = "";
+      };
+    };
+    */
+  };
 
   # Enable OpenGL
   hardware.graphics = {

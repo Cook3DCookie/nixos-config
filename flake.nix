@@ -19,9 +19,14 @@
       url = "github:youwen5/zen-browser-flake";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
+    stylix = {
+      url = "github:nix-community/stylix/release-26.05";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    wallpapers = { url = "path:/home/lukas/pictures/wallpapers"; };
   };
 
-  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, nix-darwin, nixvim, ... }@inputs:
+  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, nix-darwin, nixvim, stylix, wallpapers, ... }@inputs:
     let
       system = "x86_64-linux";
       darwinSystem = "aarch64-darwin";
@@ -38,8 +43,10 @@
 	#inherit pkgs;
 	inherit unstable;
 	inherit self;
+	inherit wallpapers;
 	};
       modules = [
+	stylix.nixosModules.stylix
         ./hosts/nixos/configuration.nix
         home-manager.nixosModules.home-manager
         {
