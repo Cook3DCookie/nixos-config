@@ -38,10 +38,10 @@
   programs.ssh = { # needed?
     enable = true;
     enableDefaultConfig = false;
-    matchBlocks = {
+    settings = {
       "github.com" = {
-        user = "git";
-	identityFile = "~/.ssh/id_ed25519";
+        User = "git";
+	IdentityFile = "~/.ssh/id_ed25519";
       };
       "gitlab.com" = {
         user = "git";
