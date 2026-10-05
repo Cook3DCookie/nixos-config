@@ -2,7 +2,7 @@
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
-{ config, lib, pkgs, inputs, wallpapers, ... }:
+{ config, lib, pkgs, inputs, ... }:
 
 {
   imports =
@@ -213,7 +213,7 @@
     enable = false;
     polarity = "dark";
     #base16Scheme = "";
-    image = wallpapers.NixosAnime;
+    image = inputs.wallpapers.NixosAnime;
     #targets.nixvim.enable = false;
     /*
     fonts = {
