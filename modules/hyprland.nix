@@ -35,7 +35,7 @@
 	"$mod, D, exec, tofi-run"
 	"$mod+Shift, D, exec, discord"
 	"$mod+Shift, S, exec, spotify"
-	"$mod, L, exec, Ladybird"
+	"$mod+Shift, L, exec, Ladybird"
 	#"$mod, A, exec, anyrun"
 	#"$mod, W, exec, walker"
 

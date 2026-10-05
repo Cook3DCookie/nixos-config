@@ -30,7 +30,7 @@
 	};
       };
       clock = {
-        format = " {:%H:%M} ";
+        format = " {:%a, %d %b %H:%M} ";
 	tooltip-format = "<tt><big>{calendar}</big></tt>";
       };
       cpu = {
