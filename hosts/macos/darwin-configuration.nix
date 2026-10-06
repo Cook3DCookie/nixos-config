@@ -1,18 +1,28 @@
-{ config, pkgs, self, lib, unstable-darwin, ... }:
+{
+  pkgs,
+  self,
+  lib,
+  unstable-darwin,
+  ...
+}:
 
 {
-  environment.systemPackages = with pkgs; [
-    git
-    curl
-    pam-reattach
-  ] ++ (with unstable-darwin; [
-    #ollama
-  ]);
+  environment.systemPackages =
+    with pkgs;
+    [
+      git
+      curl
+      pam-reattach
+    ]
+    ++ (with unstable-darwin; [
+    ]);
 
   nixpkgs.config.allowUnfree = true;
-  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
-             "wezterm.nvim"
-           ];
+  nixpkgs.config.allowUnfreePredicate =
+    pkg:
+    builtins.elem (lib.getName pkg) [
+      "wezterm.nvim"
+    ];
 
   environment.shells = [ pkgs.fish ];
 
@@ -37,8 +47,14 @@
   homebrew.enable = false;
 
   system.configurationRevision = self.rev or self.dirtyRev or null;
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
-  nix.settings.extra-platforms = [ "x86_64-darwin" "aarch64-darwin" ];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
+  nix.settings.extra-platforms = [
+    "x86_64-darwin"
+    "aarch64-darwin"
+  ];
 
   system.stateVersion = 5;
 }

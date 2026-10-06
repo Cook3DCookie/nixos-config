@@ -1,4 +1,9 @@
-{ config, pkgs, inputs, unstable, ... }: 
+{
+  pkgs,
+  inputs,
+  unstable,
+  ...
+}:
 
 {
   home.username = "lukas";
@@ -15,7 +20,7 @@
     settings.user.email = "147427534+Cook3DCookie@users.noreply.github.com";
 
     #extraConfig = {
-      #"includeIf.\"gitdir:~/university/\".path" = "~/.gitconfig-university"; # change when needed
+    #"includeIf.\"gitdir:~/university/\".path" = "~/.gitconfig-university"; # change when needed
     #};
   };
 
@@ -25,46 +30,49 @@
     settings = {
       "github.com" = {
         User = "git";
-	IdentityFile = "~/.ssh/id_ed25519";
+        IdentityFile = "~/.ssh/id_ed25519";
       };
     };
   };
 
-  home.packages = with pkgs; [
-    curl
-    htop
-    tree
-    google-chrome
-    ghostty
-    discord
-    spotify
-    obsidian
-    tailscale
-    pavucontrol
-    ollama
-    nerd-fonts.fira-code
-    noto-fonts
-    tofi
-    tmux
-    fish
-    tldr
-    unzip
-    #walker
-    #anyrun
-    wl-clipboard
-    uwsm
-    pavucontrol # gui for device profiles, volume, routing
-    qjackctl # gui patchbay for jack/pipewire
-    lsp-plugins # lsp gate stereo, used as a gain stage
-    inputs.self.packages.${stdenv.hostPlatform.system}.socranop
-  ] ++ (with unstable; [
-    nixfmt
-    ladybird
-    opencode
-    inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
-    ffmpeg
-    streamdeck-ui
-  ]);
+  home.packages =
+    with pkgs;
+    [
+      curl
+      htop
+      tree
+      google-chrome
+      ghostty
+      discord
+      spotify
+      obsidian
+      tailscale
+      pavucontrol
+      ollama
+      nerd-fonts.fira-code
+      noto-fonts
+      tofi
+      tmux
+      fish
+      tldr
+      unzip
+      #walker
+      #anyrun
+      wl-clipboard
+      uwsm
+      pavucontrol # gui for device profiles, volume, routing
+      qjackctl # gui patchbay for jack/pipewire
+      lsp-plugins # lsp gate stereo, used as a gain stage
+      inputs.self.packages.${stdenv.hostPlatform.system}.socranop
+    ]
+    ++ (with unstable; [
+      nixfmt
+      ladybird
+      opencode
+      inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
+      ffmpeg
+      streamdeck-ui
+    ]);
 
   fonts.fontconfig.enable = true;
 
@@ -77,11 +85,11 @@
   };
 
   #gtk = {
-    #enable = true;
-    #cursorTheme = {
-      #package = pkgs.vanilla-dmz;
-      #name = "Vanilla-DMZ-AA";
-    #};
+  #enable = true;
+  #cursorTheme = {
+  #package = pkgs.vanilla-dmz;
+  #name = "Vanilla-DMZ-AA";
+  #};
   #};
 
   programs.direnv = {

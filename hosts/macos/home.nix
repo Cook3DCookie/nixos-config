@@ -1,4 +1,4 @@
-{ config, pkgs, inputs, unstable-darwin, ... }: 
+{ pkgs, unstable-darwin, ... }:
 
 {
   home.username = "lukas";
@@ -15,37 +15,38 @@
     settings.user.email = "147427534+Cook3DCookie@users.noreply.github.com";
 
     #extraConfig = {
-      #"includeIf.\"gitdir:~/university/\".path" = "~/.gitconfig-university"; # change when needed
+    #"includeIf.\"gitdir:~/university/\".path" = "~/.gitconfig-university"; # change when needed
     #};
 
     #includes = [
-      #{
-        #condition = "gitdir:~/Documents/university/**"; # change when needed
-	#path = "/Users/lukas/nix-config/.gitconfig-university";
-	# -------- probably not needed anymore: --------
-	#contents = {
-	  #user = {
-	    #name = "name";
-	    #email = "email";
-	  #};
-	  # optionally gitlab specific settings. needed?
-	  # url."git@gitlab.university.ed:".insteadOf = "https://gitlab.university.edu/";
-	#};
-      #}
+    #{
+    #condition = "gitdir:~/Documents/university/**"; # change when needed
+    #path = "/Users/lukas/nix-config/.gitconfig-university";
+    # -------- probably not needed anymore: --------
+    #contents = {
+    #user = {
+    #name = "name";
+    #email = "email";
+    #};
+    # optionally gitlab specific settings. needed?
+    # url."git@gitlab.university.ed:".insteadOf = "https://gitlab.university.edu/";
+    #};
+    #}
     #];
   };
 
-  programs.ssh = { # needed?
+  programs.ssh = {
+    # needed?
     enable = true;
     enableDefaultConfig = false;
     settings = {
       "github.com" = {
         User = "git";
-	IdentityFile = "~/.ssh/id_ed25519";
+        IdentityFile = "~/.ssh/id_ed25519";
       };
       "gitlab.com" = {
         user = "git";
-	identityFile = "~/.ssh/id_ed25519";
+        identityFile = "~/.ssh/id_ed25519";
       };
     };
   };
@@ -55,34 +56,37 @@
     "$HOME/.local/bin"
   ];
 
-  home.packages = with pkgs; [
-    #curl
-    htop
-    tree
-    #tailscale
-    #ollama
-    #nerd-fonts.fira-code
-    #tmux
-    tldr
-    wget
-    #pyton312
-    #scrcpy
-    #uv
-    #ffmpeg
-    #micromamba or conda if needed; clean up first, check what is there (miniforge3, envs)
-    marp-cli
-    #fzf
-    #ripgrep
-    #gradle
-    #imagemagick
-    #tesseract
-    #gnupg
-    unnaturalscrollwheels
-  ] ++ (with unstable-darwin; [
-    #ladybird
-    ollama
-    opencode
-  ]);
+  home.packages =
+    with pkgs;
+    [
+      #curl
+      htop
+      tree
+      #tailscale
+      #ollama
+      #nerd-fonts.fira-code
+      #tmux
+      tldr
+      wget
+      #pyton312
+      #scrcpy
+      #uv
+      #ffmpeg
+      #micromamba or conda if needed; clean up first, check what is there (miniforge3, envs)
+      marp-cli
+      #fzf
+      #ripgrep
+      #gradle
+      #imagemagick
+      #tesseract
+      #gnupg
+      unnaturalscrollwheels
+    ]
+    ++ (with unstable-darwin; [
+      #ladybird
+      ollama
+      opencode
+    ]);
 
   #fonts.fontconfig.enable = true;
 

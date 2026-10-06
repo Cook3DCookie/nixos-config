@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ ... }:
 
 {
   programs.starship = {
@@ -6,7 +6,7 @@
     settings = {
       character = {
         success_symbol = "[λ](bold green)";
-	error_symbol = "[λ](bold red)";
+        error_symbol = "[λ](bold red)";
       };
     };
   };

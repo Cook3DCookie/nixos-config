@@ -2,14 +2,19 @@
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
-{ config, lib, pkgs, inputs, ... }:
+{
+  config,
+  pkgs,
+  inputs,
+  ...
+}:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-      inputs.nixvim.nixosModules.nixvim
-    ];
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+    inputs.nixvim.nixosModules.nixvim
+  ];
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
@@ -39,7 +44,10 @@
   # Set your time zone.
   time.timeZone = "Europe/Berlin";
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
 
   nixpkgs.config.allowUnfree = true;
 
@@ -50,9 +58,9 @@
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
   console = {
-  #   font = "Lat2-Terminus16";
+    #   font = "Lat2-Terminus16";
     keyMap = "us";
-  #   useXkbConfig = true; # use xkb.options in tty.
+    #   useXkbConfig = true; # use xkb.options in tty.
   };
 
   i18n.inputMethod = {
@@ -62,45 +70,41 @@
       waylandFrontend = true;
       addons = with pkgs; [
         fcitx5-gtk
-	qt6Packages.fcitx5-chinese-addons
-	fcitx5-mozc
+        qt6Packages.fcitx5-chinese-addons
+        fcitx5-mozc
       ];
       settings = {
         inputMethod = {
           GroupOrder."0" = "Default";
-	  "Groups/0" = {
-	    Name = "Default";
-	    "Default Layout" = "us";
-	    DefaultIM = "keyboard-us";
-	  };
-	  "Groups/0/Items/0".Name = "keyboard-us";
-	  "Groups/0/Items/1".Name = "pinyin";
-	  "Groups/0/Items/2".Name = "mozc";
+          "Groups/0" = {
+            Name = "Default";
+            "Default Layout" = "us";
+            DefaultIM = "keyboard-us";
+          };
+          "Groups/0/Items/0".Name = "keyboard-us";
+          "Groups/0/Items/1".Name = "pinyin";
+          "Groups/0/Items/2".Name = "mozc";
         };
-	globalOptions = {
-	  "Hotkey/EnumerateForwardKeys" = {
-	    "0" = "Super+space";
-	  };
-	  #ActiveByDefault = true;
+        globalOptions = {
+          "Hotkey/EnumerateForwardKeys" = {
+            "0" = "Super+space";
+          };
+          #ActiveByDefault = true;
         };
       };
       ignoreUserConfig = true;
     };
   };
 
-
   # Enable the X11 windowing system.
   # services.xserver = {
-    # enable = true;
-    # xkb = {
-      # layout = "us,de";
-      # variant = "";
-      # options = "grp:alt_shift_toggle";
-    # };
+  # enable = true;
+  # xkb = {
+  # layout = "us,de";
+  # variant = "";
+  # options = "grp:alt_shift_toggle";
   # };
-
-
-  
+  # };
 
   # Configure keymap in X11
   # services.xserver.xkb.layout = "us";
@@ -119,38 +123,38 @@
     pulse.enable = true;
     jack.enable = true;
     extraConfig = {
-    pipewire-pulse."10-adjustQuirkRules.conf" = {
-      "pulse.rules" = [
-        {
-	  matches = [ { "application.process.binary" = "Discord"; } ];
-	  actions."quirks" = [ "block-source-volume" ];
-	}
-      ];
-    };
-#      "monitor.alsa.rules" = [
-#        {
-#	  matches = [ { "device.name" = "~alsa_card.*"; } ];
-#	  actions = {
-#	    "update-props" = {
-#	      # give highest priority to preferred sink
-#	      "node.name" = "alsa_output.usb-BEHRINGER_UMC204HD_192k-00.HiFi__Line1__sink";
-#	      "priority.session" = 2000;
-#	      "priority.driver" = 2000;
-#	    };
-#	  };
-#	}
-#	{
-#	  matches = [ { "device.name" = "~alsa_card.*"; } ];
-#	  actions = {
-#	    "update-props" = {
-#	      # preferred source
-#	      "node.name" = "alsa_input.usb-BEHRINGER_UMC204HD_192k-00.HiFi__Mic1__source";
-#	      "priority.session" = 2000;
-#	      "priority.driver" = 2000;
-#	    };
-#	  };
-#	}
-    #  ];
+      pipewire-pulse."10-adjustQuirkRules.conf" = {
+        "pulse.rules" = [
+          {
+            matches = [ { "application.process.binary" = "Discord"; } ];
+            actions."quirks" = [ "block-source-volume" ];
+          }
+        ];
+      };
+      #      "monitor.alsa.rules" = [
+      #        {
+      #	  matches = [ { "device.name" = "~alsa_card.*"; } ];
+      #	  actions = {
+      #	    "update-props" = {
+      #	      # give highest priority to preferred sink
+      #	      "node.name" = "alsa_output.usb-BEHRINGER_UMC204HD_192k-00.HiFi__Line1__sink";
+      #	      "priority.session" = 2000;
+      #	      "priority.driver" = 2000;
+      #	    };
+      #	  };
+      #	}
+      #	{
+      #	  matches = [ { "device.name" = "~alsa_card.*"; } ];
+      #	  actions = {
+      #	    "update-props" = {
+      #	      # preferred source
+      #	      "node.name" = "alsa_input.usb-BEHRINGER_UMC204HD_192k-00.HiFi__Mic1__source";
+      #	      "priority.session" = 2000;
+      #	      "priority.driver" = 2000;
+      #	    };
+      #	  };
+      #	}
+      #  ];
     };
   };
 
@@ -165,7 +169,10 @@
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.lukas = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" ]; # Enable ‘sudo’ for the user.
+    extraGroups = [
+      "wheel"
+      "networkmanager"
+    ]; # Enable ‘sudo’ for the user.
     shell = pkgs.fish;
     # packages = with pkgs; [
     #   tree
@@ -201,12 +208,12 @@
   };
 
   #environment.sessionVariables = {
-    #NIXOS_OZONE_WL = "1";
-    #GKD_BACKEND = "wayland";
-    #QT_QPA_PLATFORM = "wayland;xcb";
-    #SDL_VIDEODRIVER = "wayland";
-    #WLR_NO_HARDWARE_CURSORS = "1";
-    #LIBVA_DRIVER_NAME = "nvidia";
+  #NIXOS_OZONE_WL = "1";
+  #GKD_BACKEND = "wayland";
+  #QT_QPA_PLATFORM = "wayland;xcb";
+  #SDL_VIDEODRIVER = "wayland";
+  #WLR_NO_HARDWARE_CURSORS = "1";
+  #LIBVA_DRIVER_NAME = "nvidia";
   #};
 
   stylix = {
@@ -216,20 +223,20 @@
     image = inputs.wallpapers.NixosAnime;
     #targets.nixvim.enable = false;
     /*
-    fonts = {
-      monospace = {
-        package = pkgs.nerdfonts.override { fonts = [ "" ]; };
-        name = "";
+      fonts = {
+        monospace = {
+          package = pkgs.nerdfonts.override { fonts = [ "" ]; };
+          name = "";
+        };
+        sansSerif = {
+          package = pkgs.;
+          name = "";
+        };
+        serif = {
+          package = pkgs.;
+          name = "";
+        };
       };
-      sansSerif = {
-        package = pkgs.;
-        name = "";
-      };
-      serif = {
-        package = pkgs.;
-        name = "";
-      };
-    };
     */
   };
 
@@ -297,4 +304,3 @@
   system.stateVersion = "25.11"; # Did you read the comment?
 
 }
-

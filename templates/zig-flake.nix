@@ -6,25 +6,26 @@
     #zig-overlay.url = "github:mitchellh/zig-overlay"; # more version flexibility?
   };
 
-  outputs = { self, nixpkgs }:
+  outputs =
+    { self, nixpkgs }:
     let
       system = "x86_64-linux"; # change if needed
       pkgs = import nixpkgs { inherit system; };
-    in {
+    in
+    {
       devShells.${system}.default = pkgs.mkShell {
         packages = [
-	  pkgs.zig
-	  pkgs.zls
-	  #pkgs.llvmPackages_17.clang # needed?
-	  #pkgs.llvmPackages_17.lld # needed?
-	  #pkgs.direnv # add if needed, but should be in home.nix
-	];
+          pkgs.zig
+          pkgs.zls
+          #pkgs.llvmPackages_17.clang # needed?
+          #pkgs.llvmPackages_17.lld # needed?
+          #pkgs.direnv # add if needed, but should be in home.nix
+        ];
 
-	hardeningDisable = [ "all" ];
+        hardeningDisable = [ "all" ];
 
-	# TODO:
-	shellHook = ''
-	  '';
+        # TODO:
+        shellHook = "	  ";
       };
     };
 }

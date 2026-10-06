@@ -1,10 +1,11 @@
-{ lib
-, python3Packages
-, fetchPypi
-, wrapGAppsHook3
-, gobject-introspection
-, gtk3
-, libgudev
+{
+  lib,
+  python3Packages,
+  fetchPypi,
+  wrapGAppsHook3,
+  gobject-introspection,
+  gtk3,
+  libgudev,
 }:
 
 let
@@ -33,15 +34,18 @@ python3Packages.buildPythonApplication rec {
     gobject-introspection
   ];
 
-  propagatedBuildInputs = with python3Packages; [
-    pygobject3
-    pydbus
-    pyusb
-  ] ++ [
-    setuptools_81
-    gtk3
-    libgudev
-  ];
+  propagatedBuildInputs =
+    with python3Packages;
+    [
+      pygobject3
+      pydbus
+      pyusb
+    ]
+    ++ [
+      setuptools_81
+      gtk3
+      libgudev
+    ];
 
   postInstall = ''
     export PYTHONPATH=$out/lib/python${python3Packages.python.pythonVersion}/site-packages:$PYTHONPATH
@@ -84,7 +88,10 @@ python3Packages.buildPythonApplication rec {
     cp $out/lib/udev/rules.d/70-socranop.rules $udev/lib/udev/rules.d/
   '';
 
-  outputs = [ "out" "udev" ];
+  outputs = [
+    "out"
+    "udev"
+  ];
 
   postFixup = ''
     rm -f $out/bin/socranop-installtool

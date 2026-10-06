@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   programs.tmux = {
@@ -20,12 +20,17 @@
       set -g base-index 1
       set -g pane-base-index 1
       set -g renumber-windows on
-      
+
       set -g history-limit 10000
       set -g escape-time 0
-      ${if pkgs.stdenv.isDarwin then ''
-	set-option -g default-command "${pkgs.pam-reattach}/bin/reattach-to-session-namespace -- ${pkgs.fish}/bin/fish -l"
-      '' else ""}
+      ${
+        if pkgs.stdenv.isDarwin then
+          ''
+            	set-option -g default-command "${pkgs.pam-reattach}/bin/reattach-to-session-namespace -- ${pkgs.fish}/bin/fish -l"
+          ''
+        else
+          ""
+      }
 
       set -s extended-keys on
       set -s extended-keys-format csi-u

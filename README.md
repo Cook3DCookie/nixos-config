@@ -6,6 +6,7 @@
 - agenix (or alternatives)
 - improve nixvim config (modularize/dendritic?)
 - power management?
+- dendritic?
 
 ### command for rebuilding:
 on nixos:  

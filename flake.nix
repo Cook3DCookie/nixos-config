@@ -13,7 +13,7 @@
       url = "github:nix-darwin/nix-darwin/nix-darwin-26.05";
       inputs.nixpkgs.follows = "nixpkgs-darwin";
     };
-    nixvim.url =  "github:nix-community/nixvim";
+    nixvim.url = "github:nix-community/nixvim";
     zen-browser = {
       url = "github:youwen5/zen-browser-flake";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
@@ -22,10 +22,20 @@
       url = "github:nix-community/stylix/release-26.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    wallpapers = { url = "path:/home/lukas/pictures/wallpapers"; };
+    wallpapers = {
+      url = "path:/home/lukas/pictures/wallpapers";
+    };
   };
 
-  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, nix-darwin, ... }@inputs:
+  outputs =
+    {
+      self,
+      nixpkgs,
+      nixpkgs-unstable,
+      home-manager,
+      nix-darwin,
+      ...
+    }@inputs:
     let
       system = "x86_64-linux";
       darwinSystem = "aarch64-darwin";
@@ -34,49 +44,50 @@
       unstable-darwin = nixpkgs-unstable.legacyPackages.${darwinSystem};
 
       mkHomeManager = { extraSpecialArgs, homeFile }: {
-	home-manager.useGlobalPkgs = true;
-	home-manager.useUserPackages = true;
-	home-manager.users.lukas = {
-	  imports = [
-	    homeFile
-	    inputs.nixvim.homeModules.nixvim
-	  ];
-	};
-	home-manager.extraSpecialArgs = extraSpecialArgs;
+        home-manager.useGlobalPkgs = true;
+        home-manager.useUserPackages = true;
+        home-manager.users.lukas = {
+          imports = [
+            homeFile
+            inputs.nixvim.homeModules.nixvim
+          ];
+        };
+        home-manager.extraSpecialArgs = extraSpecialArgs;
       };
-    in {
-    packages.${system}.socranop = unstable.callPackage ./pkgs/socranop.nix { };
+    in
+    {
+      packages.${system}.socranop = unstable.callPackage ./pkgs/socranop.nix { };
 
-    nixosConfigurations.lukas-nixos = nixpkgs.lib.nixosSystem {
-      inherit system;
-      specialArgs = {
-        inherit inputs self unstable;
-	};
-      modules = [
-	inputs.stylix.nixosModules.stylix
-        ./hosts/nixos/configuration.nix
-        home-manager.nixosModules.home-manager
-        
-	(mkHomeManager {
-	  extraSpecialArgs = { inherit inputs unstable; };
-	  homeFile = ./hosts/nixos/home.nix;
-	})
-      ];
-    };
-    darwinConfigurations.lukas-macos = nix-darwin.lib.darwinSystem {
-      system = darwinSystem;
-      specialArgs = {
-        inherit inputs self unstable-darwin;
+      nixosConfigurations.lukas-nixos = nixpkgs.lib.nixosSystem {
+        inherit system;
+        specialArgs = {
+          inherit inputs self unstable;
+        };
+        modules = [
+          inputs.stylix.nixosModules.stylix
+          ./hosts/nixos/configuration.nix
+          home-manager.nixosModules.home-manager
+
+          (mkHomeManager {
+            extraSpecialArgs = { inherit inputs unstable; };
+            homeFile = ./hosts/nixos/home.nix;
+          })
+        ];
       };
-      modules = [
-        ./hosts/macos/darwin-configuration.nix
-	home-manager.darwinModules.home-manager
+      darwinConfigurations.lukas-macos = nix-darwin.lib.darwinSystem {
+        system = darwinSystem;
+        specialArgs = {
+          inherit inputs self unstable-darwin;
+        };
+        modules = [
+          ./hosts/macos/darwin-configuration.nix
+          home-manager.darwinModules.home-manager
 
-	(mkHomeManager {
-	  extraSpecialArgs = { inherit inputs unstable-darwin; };
-	  homeFile = ./hosts/macos/home.nix;
-	})
-      ];
+          (mkHomeManager {
+            extraSpecialArgs = { inherit inputs unstable-darwin; };
+            homeFile = ./hosts/macos/home.nix;
+          })
+        ];
+      };
     };
-  };
 }
