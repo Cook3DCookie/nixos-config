@@ -15,6 +15,7 @@
       ];
       modules-center = [ "hyprland/workspaces" ];
       modules-right = [
+        "disk"
         "cpu"
         "temperature"
         "memory"
@@ -87,6 +88,12 @@
         interval = 4;
         format = "{}";
         tooltip = false;
+      };
+      disk = {
+        path = "/";
+        interval = 30;
+        format = "{percentage_used}%";
+        tooltip-format = "{used} / {total} used ({percentage_used}%)";
       };
     };
 
