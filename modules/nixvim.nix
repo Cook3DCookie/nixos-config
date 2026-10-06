@@ -1,4 +1,4 @@
-{ config, lib, pkgs, inputs, ... }:
+{ ... }:
 
 {
   programs.nixvim = {
@@ -31,7 +31,6 @@
       autoclose.enable = true;
 
 
-
       cmp = {
         enable = true;
 	autoEnableSources = true;
@@ -56,9 +55,8 @@
       };
       lsp = {
         enable = true;
-	#inlayHints.enable = true;
+	inlayHints = true;
 	servers = {
-	  #nil_ls.enable = true; # maybe change to nixd in future
 	  nixd = {
 	    enable = true;
 	    settings = {
@@ -130,133 +128,24 @@
 	  };
 	};
       };
-
-
-      /*
-      codecompanion = {
+      conform-nvim = {
         enable = true;
 	settings = {
-	  strategies = {
-	    inline.adapter = "ollama";
-	    agent.adapter = "ollama";
-	    chat.adapter = "ollama";
+	  formatters_by_ft = {
+	    python = [ "ruff_fix" "ruff_format" "ruff_organize_imports" ];
+	    nix = [ "nixfmt" ];
+	    zig = [ "zigfmt" ];
 	  };
-	  display = {
-	    chat = {
-	      window = {
-	        layout = "vertical";
-		width = 0.25;
-		position = "left";
-	      };
-	    };
-	  };
-	  adapters = {
-	    ollama = {
-	      __raw = ''
-	        function()
-		  return requires("codecompanion.adapters").extend("ollama", {
-		    name = "ollama",
-		    schema = {
-		      model = {
-		        default = "ZimaBlueAI/qwen3.5-9B-DeepSeek-V4-Flash-GGUF:latest",
-		      },
-		    },
-		  })
-		end
-	      '';
-	    };
+	  format_on_save = {
+	    lsp_format = "fallback";
+	    timeout_ms = 500;
 	  };
 	};
       };
-      llm = {
-        enable = true;
-	settings = {
-	  backend = "ollama";
-	  model = "qwen2.5-coder:1.5b";
-	  url = "http://localhost:11434/api/generate";
-
-	  fim = {
-	    enabled = true;
-	    prefix_prompt = "<|fim_prefix|>";
-	    middle_prompt = "<|fim_prefix|>";
-	    suffix_prompt = "<|fim_prefix|>";
-	  };
-	  debounce_ms = 150;
-
-	  accept_keymap = "<Right>";
-	  #dismiss_keymap = "<S-Tab>";
-
-	  request_body = {
-	    think = false;
-	    raw = true;
-	    stop = ["<|file_separator|>" "<|fim_prefix|>" "<|fim_suffix|>" "<|fim_middle|>" "<|endoftext|>"];
-	    options = {
-	      temperature = 0.2;
-	      top_p = 0.95;
-	      num_predict = 15;
-	    };
-	  };
-	};
-      };
-      */
-
-/*
-      molten = {
-        enable = true;
-	#lazyLoad.enable = true;
-
-	# Configuration settings for molten.nvim. More examples at https://github.com/nix-community/nixvim/blob/main/plugins/by-name/molten/default.nix#L191
-	settings = {
-	  auto_image_popup = false;
-	  auto_init_behavior = "init";
-	  auto_open_html_in_browser = false;
-	  auto_open_output = true;
-	  cover_empty_lines = false;
-	  copy_output = false;
-	  enter_output_behavior = "open_then_enter";
-	  image_location = "both";
-	  image_provider = "image.nvim";
-	  #open_cmd
-	  output_crop_border = true;
-	  output_show_exec_time = true;
-	  output_show_more = false;
-	  output_virt_lines = false;
-	  output_win_border = [ "" "━" "" "" ];
-	  output_win_cover_gutter = true;
-	  output_win_hide_on_leave = true;
-	  output_win_max_height = 15;
-	  output_win_max_width = 80;
-	  output_win_style = false;
-	  save_path.__raw = "vim.fn.stdpath('data')..'/molten'";
-	  tick_rate = 500;
-	  use_border_highlights = false;
-	  limit_output_chars = 10000;
-	  virt_lines_off_by_1 = false;
-	  virt_text_output = false;
-	  #virt_text_max_lines
-	  wrap_output = false;
-	  output_win_zindex = 50;
-	  #virt_text_truncate
-	  #floating_window_focus = "top";
-	};
-      };
-      */
     };
+
     keymaps = [
-      /*
-      {
-        mode = "v";
-	key = "<leader>i";
-	action = "<cmd>CodeCompanion<cr>";
-	options.desc = "CodeCompanion Inline Prompt";
-      }
-      {
-        mode = [ "n" "v" ];
-	key = "<leader>a";
-	action = "<cmd>CodeCompanionChat Toggle<cr>";
-	options.desc = "CodeCompanion Chat";
-      }
-      */
+
     ];
   };
 }

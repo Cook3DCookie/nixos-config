@@ -45,7 +45,6 @@
     nerd-fonts.fira-code
     noto-fonts
     tofi
-    #ladybird
     tmux
     fish
     tldr
@@ -59,6 +58,7 @@
     lsp-plugins # lsp gate stereo, used as a gain stage
     inputs.self.packages.${stdenv.hostPlatform.system}.socranop
   ] ++ (with unstable; [
+    nixfmt
     ladybird
     opencode
     inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
