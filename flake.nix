@@ -22,8 +22,9 @@
       url = "github:nix-community/stylix/release-26.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    wallpapers = {
-      url = "path:/home/lukas/pictures/wallpapers";
+    wallpaper = {
+      url = "path:/home/lukas/pictures/wallpapers/nix-wallpaper-binary-black.png";
+      flake = false;
     };
   };
 
@@ -43,12 +44,12 @@
       #unstable = nixpkgs-unstable.legacyPackages.${system};
       unstable = import nixpkgs-unstable {
         system = system;
-	config.allowUnfree = true;
+        config.allowUnfree = true;
       };
       #unstable-darwin = nixpkgs-unstable.legacyPackages.${darwinSystem};
       unstable-darwin = import nixpkgs-unstable {
         system = darwinSystem;
-	config.allowUnfree = true;
+        config.allowUnfree = true;
       };
 
       mkHomeManager = { extraSpecialArgs, homeFile }: {
@@ -70,6 +71,7 @@
         inherit system;
         specialArgs = {
           inherit inputs self unstable;
+          inherit (inputs) wallpaper;
         };
         modules = [
           inputs.stylix.nixosModules.stylix
@@ -77,7 +79,10 @@
           home-manager.nixosModules.home-manager
 
           (mkHomeManager {
-            extraSpecialArgs = { inherit inputs unstable; };
+            extraSpecialArgs = {
+              inherit inputs unstable;
+              inherit (inputs) wallpaper;
+            };
             homeFile = ./hosts/nixos/home.nix;
           })
         ];

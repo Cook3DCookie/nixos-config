@@ -106,6 +106,7 @@
     ../../modules/bash.nix
     ../../modules/fish.nix
     ../../modules/starship.nix
+    ../../modules/hyprpaper.nix
   ];
 
   home.stateVersion = "25.11";

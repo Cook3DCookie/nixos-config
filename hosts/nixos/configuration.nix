@@ -6,6 +6,7 @@
   config,
   pkgs,
   inputs,
+  wallpaper,
   ...
 }:
 
@@ -217,10 +218,10 @@
   #};
 
   stylix = {
-    enable = false;
+    enable = true;
     polarity = "dark";
-    #base16Scheme = "";
-    image = inputs.wallpapers.NixosAnime;
+    #base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-hard.yaml";
+    image = wallpaper;
     #targets.nixvim.enable = false;
     /*
       fonts = {

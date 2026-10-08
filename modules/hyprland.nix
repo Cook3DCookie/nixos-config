@@ -122,21 +122,4 @@
       };
     };
   };
-
-  services.hyprpaper = {
-    enable = true;
-    settings = {
-      splash = false;
-      preload = [
-        "/home/lukas/pictures/wallpapers/NixosAnime.png"
-      ];
-
-      wallpaper = [
-        {
-          monitor = "";
-          path = "/home/lukas/pictures/wallpapers/NixosAnime.png";
-        }
-      ];
-    };
-  };
 }

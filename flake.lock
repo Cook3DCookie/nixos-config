@@ -319,7 +319,7 @@
         "nixpkgs-unstable": "nixpkgs-unstable",
         "nixvim": "nixvim",
         "stylix": "stylix",
-        "wallpapers": "wallpapers",
+        "wallpaper": "wallpaper",
         "zen-browser": "zen-browser"
       }
     },
@@ -453,15 +453,16 @@
         "type": "github"
       }
     },
-    "wallpapers": {
+    "wallpaper": {
+      "flake": false,
       "locked": {
-        "lastModified": 1790620413,
-        "narHash": "sha256-Gn3LJVHWQyU74m12uMXFJvUYGRV3gHcpI8X0A9aNORc=",
-        "path": "/home/lukas/pictures/wallpapers",
+        "lastModified": 1791457221,
+        "narHash": "sha256-0PeUjEXv/I0X+P2Cb8zot20rM4VIX8sPWYqJOr8l410=",
+        "path": "/home/lukas/pictures/wallpapers/nix-wallpaper-binary-black.png",
         "type": "path"
       },
       "original": {
-        "path": "/home/lukas/pictures/wallpapers",
+        "path": "/home/lukas/pictures/wallpapers/nix-wallpaper-binary-black.png",
         "type": "path"
       }
     },
