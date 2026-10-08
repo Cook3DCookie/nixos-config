@@ -60,10 +60,7 @@
           warning = 75;
           critical = 90;
         };
-        tooltip-format = ''
-          	  RAM: {used:0.1f}GB/{total:0.1f}GB
-          	  Swap: {swapUsed:0.1f}GB/{swapTotal:0.1f}GB
-          	'';
+        tooltip-format = "RAM: {used:0.1f}GB/{total:0.1f}GB\nSwap: {swapUsed:0.1f}GB/{swapTotal:0.1f}GB";
       };
       temperature = {
         hwmon-path = "/sys/class/hwmon/hwmon1/temp1_input";
@@ -92,43 +89,37 @@
       disk = {
         path = "/";
         interval = 30;
-        format = "{percentage_used}%";
+        format = " {percentage_used}% ";
         tooltip-format = "{used} / {total} used ({percentage_used}%)";
       };
     };
 
     style = ''
-            * {
-              font-family: "FiraCode Nerd Font";
-      	font-size: 13px;
+        * {
+          font-family: "FiraCode Nerd Font";
+      	  font-size: 13px;
       	}
 
-              window#waybar {
-      	  background-color: rgba(26, 27, 38, 0.5);
-      	  color: #c0caf5;
+        window#waybar {
       	  border-radius: 10px;
       	  padding: 0 10px;
-      	}
-
-      	#window {
-      	  background-color: rgba(88, 88, 88, 0.5);
       	}
 
       	#workspaces button {
       	  padding: 0 5px;
       	  background: transparent;
-      	  color: #c0caf5;
+      	  color: #c0caf5; /* change after stylix color found */
       	}
 
       	#workspaces button.active {
-      	  background: rgba(122, 162, 247, 0.5);
+      	  background: rgba(122, 162, 247, 0.5); /* change after stylix color found */
       	  border-radius: 5px;
       	}
 
-      	#cpu, #memory, #custom-gpu, #clock, #temperature, #network {
+      	#cpu, #memory, #custom-gpu, #clock, #temperature, #network, #disk {
       	  padding: 0 8px;
       	  margin: 0 2px;
-      	  background: rgba(55, 59, 70, 0.8);
+      	  background: rgba(55, 59, 70, 0.8); /* change after stylix color found */
       	  border-radius: 6px;
       	}
     '';

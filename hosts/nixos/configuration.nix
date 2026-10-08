@@ -220,7 +220,7 @@
   stylix = {
     enable = true;
     polarity = "dark";
-    #base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-hard.yaml";
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-hard.yaml";
     image = wallpaper;
     #targets.nixvim.enable = false;
     /*
