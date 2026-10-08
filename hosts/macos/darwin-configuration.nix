@@ -18,11 +18,6 @@
     ]);
 
   nixpkgs.config.allowUnfree = true;
-  nixpkgs.config.allowUnfreePredicate =
-    pkg:
-    builtins.elem (lib.getName pkg) [
-      "wezterm.nvim"
-    ];
 
   environment.shells = [ pkgs.fish ];
 

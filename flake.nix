@@ -40,8 +40,16 @@
       system = "x86_64-linux";
       darwinSystem = "aarch64-darwin";
 
-      unstable = nixpkgs-unstable.legacyPackages.${system};
-      unstable-darwin = nixpkgs-unstable.legacyPackages.${darwinSystem};
+      #unstable = nixpkgs-unstable.legacyPackages.${system};
+      unstable = import nixpkgs-unstable {
+        system = system;
+	config.allowUnfree = true;
+      };
+      #unstable-darwin = nixpkgs-unstable.legacyPackages.${darwinSystem};
+      unstable-darwin = import nixpkgs-unstable {
+        system = darwinSystem;
+	config.allowUnfree = true;
+      };
 
       mkHomeManager = { extraSpecialArgs, homeFile }: {
         home-manager.useGlobalPkgs = true;
