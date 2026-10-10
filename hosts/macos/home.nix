@@ -63,14 +63,10 @@
       htop
       tree
       #tailscale
-      #ollama
       #nerd-fonts.fira-code
-      #tmux
       tldr
       wget
-      #pyton312
       #scrcpy
-      #uv
       #ffmpeg
       #micromamba or conda if needed; clean up first, check what is there (miniforge3, envs)
       marp-cli
@@ -107,4 +103,3 @@
 
   home.stateVersion = "25.11";
 }
-# command for switching (in current directory): `home-manager switch --flake .#lukas`
