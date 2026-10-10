@@ -222,23 +222,30 @@
     polarity = "dark";
     base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-hard.yaml";
     image = wallpaper;
-    #targets.nixvim.enable = false;
-    /*
-      fonts = {
-        monospace = {
-          package = pkgs.nerdfonts.override { fonts = [ "" ]; };
-          name = "";
-        };
-        sansSerif = {
-          package = pkgs.;
-          name = "";
-        };
-        serif = {
-          package = pkgs.;
-          name = "";
-        };
+    #targets = {
+    #nixvim.enable = true;
+    #ghostty.enable = true;
+    #waybar.enable = true;
+    #};
+
+    fonts = {
+      monospace = {
+        package = pkgs.monocraft;
+        name = "Monocraft";
       };
-    */
+      sansSerif = {
+        package = pkgs.noto-fonts;
+        name = "Noto Serif";
+      };
+      serif = {
+        package = pkgs.noto-fonts;
+        name = "Noto Sans";
+      };
+      emoji = {
+        package = pkgs.noto-fonts-color-emoji;
+        name = "Noto Color Emoji";
+      };
+    };
   };
 
   # Enable OpenGL

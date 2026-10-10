@@ -95,33 +95,34 @@
     };
 
     style = ''
-        * {
-          font-family: "FiraCode Nerd Font";
-      	  font-size: 13px;
-      	}
+              * {
+                /* font-family: "FiraCode Nerd Font"; */
+      	  font-family: "Monocraft";
+            	  font-size: 13px;
+            	}
 
-        window#waybar {
-      	  border-radius: 10px;
-      	  padding: 0 10px;
-      	}
+              window#waybar {
+            	  border-radius: 10px;
+            	  padding: 0 10px;
+            	}
 
-      	#workspaces button {
-      	  padding: 0 5px;
-      	  background: transparent;
-      	  color: #c0caf5; /* change after stylix color found */
-      	}
+            	#workspaces button {
+            	  padding: 0 5px;
+            	  background: transparent;
+            	  color: #c0caf5; /* change after stylix color found */
+            	}
 
-      	#workspaces button.active {
-      	  background: rgba(122, 162, 247, 0.5); /* change after stylix color found */
-      	  border-radius: 5px;
-      	}
+            	#workspaces button.active {
+            	  background: rgba(122, 162, 247, 0.5); /* change after stylix color found */
+            	  border-radius: 5px;
+            	}
 
-      	#cpu, #memory, #custom-gpu, #clock, #temperature, #network, #disk {
-      	  padding: 0 8px;
-      	  margin: 0 2px;
-      	  background: rgba(55, 59, 70, 0.8); /* change after stylix color found */
-      	  border-radius: 6px;
-      	}
+            	#cpu, #memory, #custom-gpu, #clock, #temperature, #network, #disk {
+            	  padding: 0 8px;
+            	  margin: 0 2px;
+            	  background: rgba(55, 59, 70, 0.8); /* change after stylix color found */
+            	  border-radius: 6px;
+            	}
     '';
   };
 }

@@ -49,8 +49,6 @@
       tailscale
       pavucontrol
       ollama
-      nerd-fonts.fira-code
-      noto-fonts
       tofi
       tmux
       fish
@@ -73,8 +71,6 @@
       ffmpeg
       streamdeck-ui
     ]);
-
-  fonts.fontconfig.enable = true;
 
   home.pointerCursor = {
     gtk.enable = true;
