@@ -49,13 +49,11 @@
       tailscale
       pavucontrol
       ollama
-      tofi
       tmux
       fish
       tldr
       unzip
-      #walker
-      #anyrun
+      fuzzel
       wl-clipboard
       uwsm
       pavucontrol # gui for device profiles, volume, routing
@@ -104,6 +102,7 @@
     ../../modules/fish.nix
     ../../modules/starship.nix
     ../../modules/hyprpaper.nix
+    ../../modules/fuzzel.nix
   ];
 
   home.stateVersion = "25.11";

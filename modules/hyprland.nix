@@ -32,12 +32,10 @@
         "$mod, V, togglefloating"
         "$mod, F, exec, zen"
         "$mod, B, exec, google-chrome-stable"
-        "$mod, D, exec, tofi-run"
+        "$mod, O, exec, fuzzel"
         "$mod+Shift, D, exec, discord"
         "$mod+Shift, S, exec, spotify"
         "$mod+Shift, L, exec, Ladybird"
-        #"$mod, A, exec, anyrun"
-        #"$mod, W, exec, walker"
 
         "$mod, h, movefocus, l"
         "$mod, l, movefocus, r"
