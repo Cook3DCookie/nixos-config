@@ -70,6 +70,7 @@
       inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
       ffmpeg
       streamdeck-ui
+      prismlauncher
     ]);
 
   home.pointerCursor = {
