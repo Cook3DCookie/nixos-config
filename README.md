@@ -7,11 +7,11 @@ Both use Home Manager and Flakes.
 
 |Component|Tool|
 |---|---|
-|Terminal Emulator|Ghostty|
-|Shell|Fish|
-|Text Editor|Nixvim|
-|Compositor/Window Manager|Hyprland|
-|Bar|Waybar|
+|Terminal Emulator|[Ghostty](https://ghostty.org/)|
+|Shell|[Fish](https://fishshell.com/)|
+|Text Editor|[Nixvim](https://nix-community.github.io/nixvim/)|
+|Compositor/Window Manager|[Hyprland](https://hypr.land/)|
+|Bar|[Waybar](https://github.com/alexays/waybar)|
 
 [Stylix](https://github.com/nix-community/stylix) is used for applying a color scheme and fonts across my NixOS configuration.
 
