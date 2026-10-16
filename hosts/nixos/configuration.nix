@@ -22,6 +22,15 @@
   boot.loader.efi.canTouchEfiVariables = true;
   boot.supportedFilesystems = [ "ntfs" ];
 
+  nix = {
+    optimise.automatic = true;
+    gc = {
+      automatic = true;
+      dates = "weekly";
+      options = "--delete-older-than 30d";
+    };
+  };
+
   fileSystems."/mnt/shared-docs" = {
     device = "/dev/disk/by-uuid/FC0EB1E60EB199DA";
     fsType = "ntfs-3g";
