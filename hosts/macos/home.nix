@@ -82,6 +82,7 @@
       #ladybird
       ollama
       opencode
+      devenv
     ]);
 
   #fonts.fontconfig.enable = true;

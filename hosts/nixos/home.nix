@@ -69,6 +69,7 @@
       ffmpeg
       streamdeck-ui
       prismlauncher
+      devenv
     ]);
 
   home.pointerCursor = {
