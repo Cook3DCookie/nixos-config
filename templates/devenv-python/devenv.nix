@@ -1,17 +1,22 @@
 { pkgs, ... }:
 
 {
-  # https://devenv.sh/git-hooks/
   git-hooks.hooks = {
     shellcheck.enable = true;
     nixfmt.enable = true;
     ruff.enable = true;
+    mdsh.enable = true;
   };
-  # See full reference at https://devenv.sh/reference/options/
 
   languages.python = {
     enable = true;
-    version = "3.12";
+    version = "3.13";
+    libraries =
+      with pkgs;
+      lib.optionals (builtins.pathExists /etc/NIXOS) [
+        zlib
+        #stdenv.cc.cc.lib
+      ];
     uv = {
       enable = true;
       sync.enable = true;
@@ -35,7 +40,6 @@
     ]
     ++ lib.optionals (builtins.pathExists /etc/NIXOS) [
       #stdenv.cc.cc.lib
-      #zlib
       #cudaPackages_13.cudatoolkit
     ];
 
