@@ -29,6 +29,8 @@
       fugitive.enable = true;
       web-devicons.enable = true;
       autoclose.enable = true;
+      markview.enable = true;
+      render-markdown.enable = false;
 
       cmp = {
         enable = true;
