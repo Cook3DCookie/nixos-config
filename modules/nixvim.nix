@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, config, osConfig, ... }:
 
 {
   programs.nixvim = {
@@ -44,7 +44,7 @@
             { name = "luasnip"; }
           ];
           mapping = {
-            "<C-Space>" = "cmp.mapping.complete()";
+            "<C-o>" = "cmp.mapping.complete()";
             "<C-d>" = "cmp.mapping.scroll_docs(-4)";
             "<C-e>" = "cmp.mapping.close()";
             "<C-f>" = "cmp.mapping.scroll_docs(4)";
@@ -61,16 +61,33 @@
           nixd = {
             enable = true;
             settings = {
-              nixos = {
-                autoArchive = true;
-              };
+	      nixd = let
+	        flakePath = "${config.home.homeDirectory}/nix-config";
+	        hostname = osConfig.networking.hostName;
+	      
+	        systemAttribute = 
+	          if pkgs.stdenv.isDarwin
+		  then "darwinConfigurations"
+		  else "nixosConfigurations";
+
+	        in {
+	        options = {
+	          system.expr = ''
+		    (builtins.getFlake "${flakePath}").${systemAttribute}.${hostname}.options
+		  '';
+		  home-manager.expr = ''
+		    (builtins.getFlake "${flakePath}").${systemAttribute}.${hostname}.options.home-manager.users.type.getSubOptions []
+		  '';
+	        };
+	      };
             };
-          };
+	  };
           pyright.enable = true;
           zls.enable = true;
+	  roslyn_ls.enable = true;
         };
         keymaps = {
-          #silent = true;
+          silent = false;
           lspBuf = {
             gd = {
               action = "definition";

@@ -32,6 +32,7 @@
   };
 
   environment.shells = [ pkgs.fish ];
+  networking.hostName = "lukas-macos";
 
   users.users.lukas = {
     home = "/Users/lukas";

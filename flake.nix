@@ -58,9 +58,10 @@
         home-manager.users.lukas = {
           imports = [
             homeFile
-            inputs.nixvim.homeModules.nixvim
+            #inputs.nixvim.homeModules.nixvim
           ];
         };
+	home-manager.sharedModules = [ inputs.nixvim.homeModules.nixvim ];
         home-manager.extraSpecialArgs = extraSpecialArgs;
       };
     in
@@ -80,7 +81,7 @@
 
           (mkHomeManager {
             extraSpecialArgs = {
-              inherit inputs unstable;
+              inherit inputs self unstable;
               inherit (inputs) wallpaper;
             };
             homeFile = ./hosts/nixos/home.nix;
@@ -97,7 +98,7 @@
           home-manager.darwinModules.home-manager
 
           (mkHomeManager {
-            extraSpecialArgs = { inherit inputs unstable-darwin; };
+            extraSpecialArgs = { inherit inputs self unstable-darwin; };
             homeFile = ./hosts/macos/home.nix;
           })
         ];
