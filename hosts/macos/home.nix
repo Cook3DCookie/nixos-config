@@ -70,8 +70,8 @@
       #ffmpeg
       #micromamba or conda if needed; clean up first, check what is there (miniforge3, envs)
       marp-cli
-      #fzf
-      #ripgrep
+      fzf
+      ripgrep
       #gradle
       #imagemagick
       #tesseract
