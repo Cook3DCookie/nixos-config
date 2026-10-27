@@ -1,43 +1,45 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 
 {
   programs.tmux = {
     enable = true;
     terminal = "tmux-256color";
     keyMode = "vi";
+
+    mouse = true;
+    prefix = "C-space";
+    baseIndex = 1;
+    historyLimit = 10000;
+    escapeTime = 0;
+    focusEvents = true;
+    aggressiveResize = true;
+
     plugins = with pkgs.tmuxPlugins; [
       resurrect # configuration needed for both
       continuum
     ];
-    extraConfig = ''
-      set-option -ga terminal-overrides ",xterm-256color:RGB"
-      set -g mouse on
+    extraConfig = lib.mkMerge [
+      ''
+                set-option -ga terminal-overrides ",xterm-256color:RGB"
+                set -as terminal-features 'xterm-ghostty:extkeys'
 
-      set -g prefix C-space
-      unbind C-b
-      bind C-space send-prefix
+                set -s extended-keys on
+                set -s extended-keys-format csi-u
 
-      set -g base-index 1
-      set -g pane-base-index 1
-      set -g renumber-windows on
+                unbind C-b
+                bind C-space send-prefix
 
-      set -g history-limit 10000
-      set -g escape-time 0
-      ${
-        if pkgs.stdenv.isDarwin then
-          ''
-            	set-option -g default-command "${pkgs.pam-reattach}/bin/reattach-to-session-namespace -- ${pkgs.fish}/bin/fish -l"
-          ''
-        else
-          ""
-      }
+                set -g pane-base-index 1
+                set -g renumber-windows on
 
-      set -s extended-keys on
-      set -s extended-keys-format csi-u
-      set -as terminal-features 'xterm-ghostty:extkeys'
-
-      set -g @continuum-save-interval '10'
-      set -g @continuum-restore 'on'
-    '';
+                set -g @continuum-save-interval '10'
+                set -g @continuum-restore 'on'
+        	set -g @resurrect-capture-pane-contents 'on'
+        	set -g @resurrect-processes
+      ''
+      (lib.mkIf pkgs.stdenv.isDarwin ''
+        set-option -g default-command "${pkgs.pam-reattach}/bin/reattach-to-session-namespace -- ${pkgs.fish}/bin/fish -l"
+      '')
+    ];
   };
 }
