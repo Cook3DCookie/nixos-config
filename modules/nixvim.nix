@@ -1,4 +1,9 @@
-{ pkgs, config, osConfig, ... }:
+{
+  pkgs,
+  config,
+  osConfig,
+  ...
+}:
 
 {
   programs.nixvim = {
@@ -61,30 +66,29 @@
           nixd = {
             enable = true;
             settings = {
-	      nixd = let
-	        flakePath = "${config.home.homeDirectory}/nix-config";
-	        hostname = osConfig.networking.hostName;
-	      
-	        systemAttribute = 
-	          if pkgs.stdenv.isDarwin
-		  then "darwinConfigurations"
-		  else "nixosConfigurations";
+              nixd =
+                let
+                  flakePath = "${config.home.homeDirectory}/nix-config";
+                  hostname = osConfig.networking.hostName;
 
-	        in {
-	        options = {
-	          system.expr = ''
-		    (builtins.getFlake "${flakePath}").${systemAttribute}.${hostname}.options
-		  '';
-		  home-manager.expr = ''
-		    (builtins.getFlake "${flakePath}").${systemAttribute}.${hostname}.options.home-manager.users.type.getSubOptions []
-		  '';
-	        };
-	      };
+                  systemAttribute = if pkgs.stdenv.isDarwin then "darwinConfigurations" else "nixosConfigurations";
+
+                in
+                {
+                  options = {
+                    system.expr = ''
+                      		    (builtins.getFlake "${flakePath}").${systemAttribute}.${hostname}.options
+                      		  '';
+                    home-manager.expr = ''
+                      		    (builtins.getFlake "${flakePath}").${systemAttribute}.${hostname}.options.home-manager.users.type.getSubOptions []
+                      		  '';
+                  };
+                };
             };
-	  };
+          };
           pyright.enable = true;
           zls.enable = true;
-	  roslyn_ls.enable = true;
+          roslyn_ls.enable = true;
         };
         keymaps = {
           silent = false;
@@ -148,6 +152,7 @@
       };
       conform-nvim = {
         enable = true;
+        autoInstall.enable = true;
         settings = {
           formatters_by_ft = {
             python = [
@@ -168,6 +173,11 @@
 
     keymaps = [
 
+    ];
+
+    extraPackages = with pkgs; [
+      tree-sitter
+      fd
     ];
   };
 }
