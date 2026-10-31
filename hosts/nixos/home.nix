@@ -47,7 +47,6 @@
       spotify
       obsidian
       tailscale
-      pavucontrol
       ollama
       tmux
       fish
