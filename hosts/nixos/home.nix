@@ -43,7 +43,6 @@
       tree
       google-chrome
       ghostty
-      discord
       spotify
       obsidian
       tailscale
@@ -72,6 +71,7 @@
       streamdeck-ui
       prismlauncher
       devenv
+      discord
     ]);
 
   home.pointerCursor = {
