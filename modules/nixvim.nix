@@ -34,8 +34,38 @@
       fugitive.enable = true;
       web-devicons.enable = true;
       autoclose.enable = true;
-      markview.enable = false;
-      render-markdown.enable = true;
+      markview = {
+        enable = true;
+        settings = {
+          latex = {
+            enable = true;
+            blocks = {
+              enable = true;
+              hl = "MarkviewCode";
+              pad_char = " ";
+              pad_amount = 3;
+              text = "LaTeX";
+              text_hl = "MarkviewCodeInfo";
+            };
+            inlines.enable = true;
+            subscripts.fake_preview = false;
+          };
+        };
+      };
+      # TODO: either remove or make it work for maths
+      render-markdown = {
+        enable = false;
+        settings = {
+          latex = {
+            enabled = true;
+            converter = [ "utftex" ];
+            inline = true;
+            block = true;
+            position = "center";
+            highlight = "RenderMarkdownMath";
+          };
+        };
+      };
 
       cmp = {
         enable = true;
