@@ -20,7 +20,6 @@
     };
 
     plugins = {
-      treesitter.enable = true;
       telescope.enable = true;
       harpoon.enable = true;
       lualine.enable = true;
@@ -34,6 +33,8 @@
       fugitive.enable = true;
       web-devicons.enable = true;
       autoclose.enable = true;
+      lspconfig.enable = true;
+
       markview = {
         enable = true;
         settings = {
@@ -52,6 +53,7 @@
           };
         };
       };
+
       # TODO: either remove or make it work for maths
       render-markdown = {
         enable = false;
@@ -65,6 +67,13 @@
             highlight = "RenderMarkdownMath";
           };
         };
+      };
+
+      treesitter = {
+        enable = true;
+        highlight.enable = true;
+        indent.enable = false;
+        folding.enable = false; # TODO: change to launch unfolded
       };
 
       cmp = {
@@ -89,97 +98,7 @@
           };
         };
       };
-      lsp = {
-        enable = true;
-        inlayHints = true;
-        servers = {
-          nixd = {
-            enable = true;
-            settings = {
-              nixd =
-                let
-                  flakePath = "${config.home.homeDirectory}/nix-config";
-                  hostname = osConfig.networking.hostName;
 
-                  systemAttribute = if pkgs.stdenv.isDarwin then "darwinConfigurations" else "nixosConfigurations";
-
-                in
-                {
-                  options = {
-                    system.expr = ''
-                      		    (builtins.getFlake "${flakePath}").${systemAttribute}.${hostname}.options
-                      		  '';
-                    home-manager.expr = ''
-                      		    (builtins.getFlake "${flakePath}").${systemAttribute}.${hostname}.options.home-manager.users.type.getSubOptions []
-                      		  '';
-                  };
-                };
-            };
-          };
-          pyright.enable = true;
-          zls.enable = true;
-          roslyn_ls.enable = true;
-        };
-        keymaps = {
-          silent = false;
-          lspBuf = {
-            gd = {
-              action = "definition";
-              desc = "Goto Definition";
-            };
-            gr = {
-              action = "references";
-              desc = "Goto References";
-            };
-            gD = {
-              action = "declaration";
-              desc = "Goto Declaration";
-            };
-            gI = {
-              action = "implementation";
-              desc = "Goto Implementation";
-            };
-            gT = {
-              action = "type_definition";
-              desc = "Type Definition";
-            };
-            K = {
-              action = "hover";
-              desc = "Hover";
-            };
-            "<leader>cw" = {
-              action = "workspace_symbol";
-              desc = "Workspace Symbol";
-            };
-            "<leader>cr" = {
-              action = "rename";
-              desc = "Rename";
-            };
-            "<leader>ca" = {
-              action = "code_action";
-              desc = "Code Action";
-            };
-            "<C-k>" = {
-              action = "signature_help";
-              desc = "Signature Help";
-            };
-          };
-          diagnostic = {
-            "<leader>cd" = {
-              action = "open_float";
-              desc = "Line Diagnostics";
-            };
-            "]d" = {
-              action = "goto_next";
-              desc = "Next Diagnostic";
-            };
-            "[d" = {
-              action = "goto_prev";
-              desc = "Previous Diagnostic";
-            };
-          };
-        };
-      };
       conform-nvim = {
         enable = true;
         autoInstall.enable = true;
@@ -201,6 +120,100 @@
       };
     };
 
+    lsp = {
+      inlayHints.enable = true;
+      servers = {
+        nixd = {
+          enable = true;
+          config = {
+            nixd =
+              let
+                flakePath = "${config.home.homeDirectory}/nix-config";
+                hostname = osConfig.networking.hostName;
+
+                systemAttribute = if pkgs.stdenv.isDarwin then "darwinConfigurations" else "nixosConfigurations";
+
+              in
+              {
+                options = {
+                  system.expr = ''
+                    		    (builtins.getFlake "${flakePath}").${systemAttribute}.${hostname}.options
+                    		  '';
+                  home-manager.expr = ''
+                    		    (builtins.getFlake "${flakePath}").${systemAttribute}.${hostname}.options.home-manager.users.type.getSubOptions []
+                    		  '';
+                };
+              };
+          };
+        };
+        pyright.enable = true;
+        zls.enable = true;
+        omnisharp = {
+          enable = true;
+          config.on_attach = pkgs.lib.generators.mkLuaInline ''
+            	    function(client, bufnr)
+            	      vim.lsp.inlay_hint.enable(false, { bufnr = bufnr })
+            	    end
+            	  '';
+        };
+
+      };
+      keymaps = [
+        {
+          key = "gd";
+          lspBufAction = "definition";
+        }
+        {
+          key = "gr";
+          lspBufAction = "references";
+        }
+        {
+          key = "gD";
+          lspBufAction = "declaration";
+        }
+        {
+          key = "gI";
+          lspBufAction = "implementation";
+        }
+        {
+          key = "gT";
+          lspBufAction = "type_definition";
+        }
+        {
+          key = "K";
+          lspBufAction = "hover";
+        }
+        {
+          key = "<leader>cw";
+          lspBufAction = "workspace_symbol";
+        }
+        {
+          key = "<leader>cr";
+          lspBufAction = "rename";
+        }
+        {
+          key = "<leader>ca";
+          lspBufAction = "code_action";
+        }
+        {
+          key = "<C-k>";
+          lspBufAction = "signature_help";
+        }
+        {
+          key = "<leader>cd";
+          action = "<cmd>lua vim.diagnostic.open_float()<cr>";
+        }
+        {
+          key = "]d";
+          action = "<cmd>lua vim.diagnostic.goto_next()<cr>";
+        }
+        {
+          key = "[d";
+          action = "<cmd>lua vim.diagnostic.goto_prev()<cr>";
+        }
+      ];
+    };
+
     keymaps = [
 
     ];
@@ -208,6 +221,7 @@
     extraPackages = with pkgs; [
       tree-sitter
       fd
+      dotnetCorePackages.sdk_8_0_1xx
     ];
   };
 }
