@@ -5,6 +5,7 @@
   home.homeDirectory = "/Users/lukas";
 
   programs.home-manager.enable = true;
+  targets.darwin.copyApps.enableChecks = false;
 
   programs.git = {
     enable = true;
@@ -93,7 +94,7 @@
   };
 
   imports = [
-    #../modules/ghostty.nix
+    ../../modules/ghostty.nix
     ../../modules/nixvim.nix
     ../../modules/zsh.nix
     ../../modules/bash.nix
