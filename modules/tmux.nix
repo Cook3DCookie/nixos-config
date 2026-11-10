@@ -35,7 +35,7 @@
                 set -g @continuum-save-interval '10'
                 set -g @continuum-restore 'on'
         	set -g @resurrect-capture-pane-contents 'on'
-        	set -g @resurrect-processes
+        	# set -g @resurrect-processes
       ''
       (lib.mkIf pkgs.stdenv.isDarwin ''
         set-option -g default-command "${pkgs.pam-reattach}/bin/reattach-to-session-namespace -- ${pkgs.fish}/bin/fish -l"

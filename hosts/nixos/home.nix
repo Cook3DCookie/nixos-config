@@ -47,7 +47,6 @@
       obsidian
       tailscale
       ollama
-      tmux
       fish
       tldr
       unzip
@@ -106,6 +105,7 @@
     ../../modules/starship.nix
     ../../modules/hyprpaper.nix
     ../../modules/fuzzel.nix
+    ../../modules/tmux.nix
   ];
 
   home.stateVersion = "25.11";
