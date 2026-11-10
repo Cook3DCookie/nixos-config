@@ -5,6 +5,7 @@
 {
   config,
   pkgs,
+  lib,
   inputs,
   wallpaper,
   ...
@@ -96,10 +97,14 @@
           "Groups/0/Items/2".Name = "mozc";
         };
         globalOptions = {
+          "Hotkey/TriggerKeys" = {
+            "0" = "";
+          };
+          # change to EnumerateWithTriggerKeys?
           "Hotkey/EnumerateForwardKeys" = {
             "0" = "Super+space";
           };
-          #ActiveByDefault = true;
+          Behavior.ActiveByDefault = true;
         };
       };
       ignoreUserConfig = true;
