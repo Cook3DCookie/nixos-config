@@ -218,6 +218,8 @@
 
     ];
 
+    colorschemes.kanagawa.enable = true;
+
     extraPackages = with pkgs; [
       tree-sitter
       fd
